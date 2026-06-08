@@ -2,6 +2,9 @@
   "name": "zzesk-consulting-website",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,7 +16,8 @@
     "lucide-react": "^0.468.0",
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "resend": "^6.12.4"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

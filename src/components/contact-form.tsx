@@ -21,6 +21,7 @@ type FormValues = {
 };
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
+type SubmissionState = "idle" | "sending" | "success" | "error";
 
 const initialValues: FormValues = {
   name: "",
@@ -93,11 +94,18 @@ export function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [touched, setTouched] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
   const errors = useMemo(() => validate(values), [values]);
   const visibleErrors = submitted ? errors : Object.fromEntries(Object.keys(touched).map((key) => [key, errors[key as keyof FormValues]]));
+  const submitting = submissionState === "sending";
 
   function updateValue(id: keyof FormValues, value: string) {
     setValues((current) => ({ ...current, [id]: value }));
+    if (submissionState !== "idle") {
+      setSubmissionState("idle");
+      setSubmissionMessage("");
+    }
   }
 
   function markTouched(id: keyof FormValues) {
@@ -115,13 +123,43 @@ export function ContactForm() {
     );
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitted(true);
+    setSubmissionMessage("");
 
-    if (Object.keys(errors).length > 0) return;
+    if (Object.keys(errors).length > 0) {
+      setSubmissionState("idle");
+      return;
+    }
 
-    // TODO: Connect this form to a backend route, CRM, or form service before enabling real submissions.
+    setSubmissionState("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const result = (await response.json().catch(() => null)) as { message?: string } | null;
+
+      if (!response.ok) {
+        setSubmissionState("error");
+        setSubmissionMessage(result?.message || "Your enquiry could not be sent.");
+        return;
+      }
+
+      setValues(initialValues);
+      setTouched({});
+      setSubmitted(false);
+      setSubmissionState("success");
+      setSubmissionMessage("Thanks, your enquiry has been sent. I will reply as soon as possible.");
+    } catch {
+      setSubmissionState("error");
+      setSubmissionMessage("Your enquiry could not be sent.");
+    }
   }
 
   return (
@@ -300,24 +338,36 @@ export function ContactForm() {
         </Field>
       </div>
 
-      {submitted && Object.keys(errors).length === 0 ? (
+      {submissionState === "success" ? (
         <div
           className="rounded-lg border border-accent-300/30 bg-accent-400/10 p-4 text-sm leading-6 text-mist-100"
           role="status"
+          aria-live="polite"
         >
-          This form is ready for connection, but submissions are not enabled yet. Please email{" "}
+          {submissionMessage}
+        </div>
+      ) : null}
+
+      {submissionState === "error" ? (
+        <div
+          className="rounded-lg border border-red-300/30 bg-red-400/10 p-4 text-sm leading-6 text-red-100"
+          role="alert"
+        >
+          {submissionMessage} Please email{" "}
           <a className="font-medium text-accent-300 underline-offset-4 hover:underline" href={`mailto:${site.email}`}>
             {site.email}
           </a>{" "}
-          for now.
+          instead.
         </div>
       ) : null}
 
       <button
         type="submit"
-        className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-accent-400 px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300 sm:w-fit"
+        disabled={submitting}
+        aria-busy={submitting}
+        className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-accent-400 px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300 disabled:cursor-not-allowed disabled:opacity-65 disabled:hover:translate-y-0 sm:w-fit"
       >
-        Send Enquiry
+        {submitting ? "Sending..." : "Send Enquiry"}
       </button>
     </form>
   );

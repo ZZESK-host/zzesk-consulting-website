@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #08111a;
+  color: #f4f7fb;
+}
+
+::selection {
+  background: rgba(45, 212, 191, 0.28);
+  color: #f4f7fb;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.workflow-line {
+  stroke: rgba(110, 168, 254, 0.34);
+  stroke-width: 1;
+  stroke-dasharray: 6 9;
+  animation: workflow-flow 7s linear infinite;
+}
+
+.workflow-line-delay {
+  animation-delay: -3s;
+}
+
+.workflow-pulse {
+  fill: transparent;
+  stroke: rgba(45, 212, 191, 0.42);
+  stroke-width: 1;
+  animation: workflow-pulse 4.8s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes workflow-flow {
+  to {
+    stroke-dashoffset: -90;
+  }
+}
+
+@keyframes workflow-pulse {
+  0% {
+    opacity: 0.58;
+    transform: scale(0.82);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}

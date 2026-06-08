@@ -1,0 +1,66 @@
+import { ButtonLink } from "@/components/button-link";
+import { Card } from "@/components/card";
+import { Container } from "@/components/container";
+import { Reveal } from "@/components/reveal";
+import { SectionHeading } from "@/components/section-heading";
+import { about, site } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "About",
+  description:
+    "Learn about ZZESK Consulting, a founder-led business building custom dashboards powered by AI agents, business workflow automation, and human-in-the-loop approvals.",
+  path: "/about",
+});
+
+export default function AboutPage() {
+  return (
+    <>
+      <section className="bg-radial-soft border-b border-white/10 bg-ink-950 py-16 sm:py-20 lg:py-24">
+        <Container>
+          <Reveal>
+            <SectionHeading as="h1" eyebrow="ABOUT" title="Founder-led dashboard building for practical business automation." body={about.intro} />
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="bg-ink-950 py-16 sm:py-20">
+        <Container>
+          <Reveal>
+            <SectionHeading title={about.implementationHeading} />
+          </Reveal>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {about.principles.map((principle, index) => (
+              <Reveal key={principle.title} delay={index * 0.08}>
+                <Card className="h-full">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-accent-300/20 bg-accent-400/10 text-accent-300">
+                    <principle.icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h2 className="text-lg font-semibold text-mist-50">{principle.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-mist-300">{principle.body}</p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-white/10 bg-ink-900 py-16 sm:py-20">
+        <Container>
+          <Reveal>
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold tracking-[0.18em] text-accent-300">FOUNDER</p>
+              <h2 className="mt-4 text-3xl font-semibold text-mist-50 sm:text-4xl">{site.founder}</h2>
+              <p className="mt-2 text-base font-medium text-mist-200">Founder, ZZESK Consulting</p>
+              {/* TODO: Replace this editable biography placeholder with the final approved founder biography. */}
+              <p className="mt-5 max-w-2xl text-base leading-7 text-mist-300">{about.founderBio}</p>
+              <ButtonLink href="/contact" className="mt-7">
+                Discuss Your Workflow
+              </ButtonLink>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+    </>
+  );
+}

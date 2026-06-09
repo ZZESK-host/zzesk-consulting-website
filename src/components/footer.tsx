@@ -36,14 +36,15 @@ export function Footer() {
             {site.email}
           </a>
           <p>{site.domain}</p>
-          {/* TODO: Replace this placeholder with the final LinkedIn company or founder profile URL. */}
-          <a
-            href="https://www.linkedin.com/"
-            className="w-fit rounded transition hover:text-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
-            aria-label="LinkedIn profile placeholder for ZZESK Consulting"
-          >
-            LinkedIn
-          </a>
+          {site.social.linkedinUrl ? (
+            <a
+              href={site.social.linkedinUrl}
+              className="w-fit rounded transition hover:text-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
+              aria-label={`${site.founder} on LinkedIn`}
+            >
+              LinkedIn
+            </a>
+          ) : null}
         </div>
       </Container>
       <Container className="border-t border-slate-400/[0.14] py-5 text-xs text-mist-400">

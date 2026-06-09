@@ -42,6 +42,8 @@ src/content/site.ts
 
 Page-level structure lives under `src/app`.
 
+The footer LinkedIn link is configured with `site.social.linkedinUrl` in `src/content/site.ts`. Update that value if the profile changes, or leave it empty to hide the link until the final URL is known.
+
 ## Connecting The Contact Form
 
 The contact form component is:
@@ -84,7 +86,6 @@ Adjust density, movement speed, line distance, cursor influence, and colours thr
 
 - Connect the contact form to a backend, CRM, or form service.
 - Review and finalize privacy policy wording with appropriate legal guidance.
-- Add the real LinkedIn profile URL in the footer.
 - Add analytics only after choosing the tool and consent approach.
 - Replace the favicon placeholder with final brand assets if desired.
 - Review all copy once final service packages and delivery process are confirmed.

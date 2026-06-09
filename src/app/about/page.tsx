@@ -52,7 +52,6 @@ export default function AboutPage() {
               <p className="text-sm font-semibold tracking-[0.18em] text-accent-300">FOUNDER</p>
               <h2 className="mt-4 text-3xl font-semibold text-mist-50 sm:text-4xl">{site.founder}</h2>
               <p className="mt-2 text-base font-medium text-mist-200">Founder, ZZESK Consulting</p>
-              {/* TODO: Replace this editable biography placeholder with the final approved founder biography. */}
               <p className="mt-5 max-w-2xl text-base leading-7 text-mist-300">{about.founderBio}</p>
               <ButtonLink href="/contact" className="mt-7">
                 Discuss Your Workflow

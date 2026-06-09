@@ -25,6 +25,10 @@ export const site = {
   tagline: "Custom dashboards. Connected AI agents. Less repetitive work.",
   bookingLabel: "Discuss Your Workflow",
   bookingHref: "/contact",
+  social: {
+    // Swap this config value if the LinkedIn profile changes; leave it empty to hide the footer link until the real URL is known.
+    linkedinUrl: "https://www.linkedin.com/in/zachary-skinner-9a32361b3/",
+  },
 };
 
 export const navItems = [
@@ -268,7 +272,7 @@ export const about = {
     },
   ],
   founderBio:
-    "Editable biography placeholder: add a concise founder biography covering practical dashboard delivery experience, technical strengths, and the kinds of businesses ZZESK Consulting is best placed to help.",
+    "Since beginning his programming studies, Zachary Skinner has spent the past two years building practical systems and demos across custom dashboards, workflow automation, and AI-assisted tools. He founded ZZESK Consulting to turn that hands-on work into useful business systems: clear interfaces that connect existing tools, reduce repetitive admin, and keep people in control through review and approval steps.",
 };
 
 export const contact = {
@@ -295,7 +299,7 @@ export const professionalServiceJsonLd = {
     "@type": "Person",
     name: site.founder,
   },
-  sameAs: [],
+  sameAs: site.social.linkedinUrl ? [site.social.linkedinUrl] : [],
   serviceType: [
     "Custom AI dashboards",
     "AI agent dashboards",

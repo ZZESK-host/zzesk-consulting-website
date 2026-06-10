@@ -106,9 +106,9 @@ export async function POST(request: Request) {
     ["Phone", values.phone],
     ["Process to improve", values.process],
     ["Current tools", values.tools],
-    ["Desired dashboard view", values.dashboardView],
-    ["Agent actions", values.agentActions],
-    ["Actions needing approval", values.approvalActions],
+    ["Information they want to see clearly", values.dashboardView],
+    ["Steps to automate or make easier", values.agentActions],
+    ["Steps that still need a person to check them", values.approvalActions],
     ["Team size", values.teamSize],
     ["Preferred contact method", values.contactMethod],
   ] as const;

@@ -49,9 +49,9 @@ function validate(values: FormValues): FormErrors {
   }
   if (!values.process.trim()) errors.process = "Describe the process you would like to improve.";
   if (!values.tools.trim()) errors.tools = "List the tools your business currently uses.";
-  if (!values.dashboardView.trim()) errors.dashboardView = "Describe what the dashboard should show.";
-  if (!values.agentActions.trim()) errors.agentActions = "Describe what the AI agents should handle.";
-  if (!values.approvalActions.trim()) errors.approvalActions = "Describe which actions should still require approval.";
+  if (!values.dashboardView.trim()) errors.dashboardView = "Describe what you need to see more clearly.";
+  if (!values.agentActions.trim()) errors.agentActions = "Describe what should be automated or made easier.";
+  if (!values.approvalActions.trim()) errors.approvalActions = "Describe what should still be checked by a person.";
   if (!values.teamSize) errors.teamSize = "Select an approximate team size.";
   if (!values.contactMethod) errors.contactMethod = "Select a preferred contact method.";
 
@@ -254,7 +254,7 @@ export function ContactForm() {
         />
       </Field>
 
-      <Field id="dashboardView" label="What would you want the dashboard to show?" required error={visibleErrors.dashboardView}>
+      <Field id="dashboardView" label="What do you need to see more clearly?" required error={visibleErrors.dashboardView}>
         <textarea
           id="dashboardView"
           name="dashboardView"
@@ -269,7 +269,7 @@ export function ContactForm() {
       </Field>
 
       <div className="grid gap-5 lg:grid-cols-2">
-        <Field id="agentActions" label="What actions should the AI agents handle?" required error={visibleErrors.agentActions}>
+        <Field id="agentActions" label="What repetitive steps should be automated or made easier?" required error={visibleErrors.agentActions}>
           <textarea
             id="agentActions"
             name="agentActions"
@@ -283,7 +283,7 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field id="approvalActions" label="Which actions should still require approval?" required error={visibleErrors.approvalActions}>
+        <Field id="approvalActions" label="Which steps should still be checked by a person?" required error={visibleErrors.approvalActions}>
           <textarea
             id="approvalActions"
             name="approvalActions"

@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact ZZESK Consulting to discuss a custom AI dashboard, connected AI agents, business workflow automation, and human-in-the-loop approvals.",
+    "Contact ZZESK Consulting to discuss a dashboard, automation, report, or repeated business task that could be simplified.",
   path: "/contact",
 });
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
               </div>
               <h2 className="text-xl font-semibold text-mist-50">Prefer email?</h2>
               <p className="mt-3 text-sm leading-6 text-mist-300">
-                Send a brief note about the workflow you want to automate, the tools involved, what the dashboard should show, and where human approval still matters.
+                Send a brief note about the task or report you want to improve, the tools involved and what you would like to see more clearly.
               </p>
               <a
                 href={`mailto:${site.email}`}

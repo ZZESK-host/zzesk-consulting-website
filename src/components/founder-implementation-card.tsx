@@ -1,19 +1,19 @@
-import { Bot, CheckCircle2, Gauge, Workflow } from "lucide-react";
+import { CheckCircle2, Gauge, LayoutDashboard, Workflow } from "lucide-react";
 
 const implementationRows = [
   {
-    label: "Workflow mapped",
-    detail: "Tools, handoffs, approvals",
+    label: "Process mapped",
+    detail: "Tools, handoffs, reporting gaps",
     icon: Workflow,
   },
   {
-    label: "Agent actions defined",
-    detail: "Routine work and exceptions",
-    icon: Bot,
+    label: "Dashboard scope defined",
+    detail: "Views, numbers, priorities",
+    icon: LayoutDashboard,
   },
   {
-    label: "Oversight built in",
-    detail: "Review points and safeguards",
+    label: "Handover built in",
+    detail: "Documentation and support",
     icon: CheckCircle2,
   },
 ];
@@ -25,14 +25,12 @@ export function FounderImplementationCard() {
         className="absolute inset-0 bg-[radial-gradient(circle_at_76%_8%,rgba(45,212,191,0.16),transparent_18rem),radial-gradient(circle_at_20%_92%,rgba(79,141,247,0.14),transparent_16rem)]"
         aria-hidden="true"
       />
-      <div className="relative rounded-lg border border-slate-400/[0.16] bg-ink-950/72 p-5">
+      <div className="relative">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-300">
-              Founder-led implementation
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-300">Founder-led build</p>
             <h3 className="mt-3 text-2xl font-semibold leading-tight text-mist-50">
-              One person accountable from discovery to handover.
+              Practical decisions stay close to the person building the tool.
             </h3>
           </div>
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-cobalt-300/25 bg-cobalt-300/10 text-cobalt-300">
@@ -57,9 +55,9 @@ export function FounderImplementationCard() {
         </div>
 
         <div className="mt-6 rounded-lg border border-accent-300/25 bg-accent-300/10 p-4">
-          <p className="text-sm font-semibold text-mist-50">Direct communication</p>
+          <p className="text-sm font-semibold text-mist-50">Direct accountability</p>
           <p className="mt-2 text-sm leading-6 text-mist-200">
-            Practical decisions stay close to the person designing and building the system.
+            Discovery, build decisions and handover stay focused on saving time and making work easier.
           </p>
         </div>
       </div>

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navItems, site } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -19,7 +18,8 @@ function isActive(pathname: string, href: string) {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+  const [scrolled, setScrolled] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setOpen(false);
@@ -34,8 +34,43 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  useEffect(() => {
+    let frame = 0;
+
+    function update() {
+      frame = 0;
+      const scrollTop = window.scrollY;
+      setScrolled(scrollTop > 8);
+
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, scrollTop / max) : 0;
+      progressRef.current?.style.setProperty("transform", `scaleX(${progress})`);
+    }
+
+    function onScrollOrResize() {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-400/[0.16] bg-ink-950/78 backdrop-blur-xl">
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300",
+        scrolled
+          ? "border-slate-400/[0.16] bg-ink-950/80 shadow-[0_14px_44px_rgba(0,0,0,0.3)]"
+          : "border-transparent bg-ink-950/30",
+      )}
+    >
       <Container className="flex min-h-20 items-center justify-between gap-5 sm:px-8 lg:px-10">
         <Wordmark />
 
@@ -83,42 +118,46 @@ export function Header() {
         </button>
       </Container>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            id="mobile-navigation"
-            initial={shouldReduceMotion ? false : { opacity: 0, height: 0 }}
-            animate={shouldReduceMotion ? { opacity: 1, height: "auto" } : { opacity: 1, height: "auto" }}
-            exit={shouldReduceMotion ? { opacity: 0, height: 0 } : { opacity: 0, height: 0 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="overflow-hidden border-t border-slate-400/[0.16] bg-ink-950/96 md:hidden"
-          >
-            <Container className="py-3">
-              <nav className="grid gap-1" aria-label="Mobile navigation">
-                {navItems.map((item) => {
-                  const active = isActive(pathname, item.href);
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "rounded-lg px-3 py-3 text-base font-medium text-mist-200 transition hover:bg-white/[0.05] hover:text-mist-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-300",
-                        active && "bg-white/[0.06] text-mist-50",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-                <ButtonLink href={site.bookingHref} className="mt-2 w-full" showArrow={false}>
-                  {site.bookingLabel}
-                </ButtonLink>
-              </nav>
-            </Container>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <div
+        id="mobile-navigation"
+        inert={!open}
+        className={cn(
+          "grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden",
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+        )}
+      >
+        <div className="min-h-0 overflow-hidden border-t border-slate-400/[0.16] bg-ink-950/95">
+          <Container className="py-3">
+            <nav className="grid gap-1" aria-label="Mobile navigation">
+              {navItems.map((item) => {
+                const active = isActive(pathname, item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "rounded-lg px-3 py-3 text-base font-medium text-mist-200 transition hover:bg-white/[0.05] hover:text-mist-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-300",
+                      active && "bg-white/[0.06] text-mist-50",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <ButtonLink href={site.bookingHref} className="mt-2 w-full" showArrow={false}>
+                {site.bookingLabel}
+              </ButtonLink>
+            </nav>
+          </Container>
+        </div>
+      </div>
+
+      <div
+        ref={progressRef}
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent-300 via-cobalt-300 to-accent-300"
+      />
     </header>
   );
 }

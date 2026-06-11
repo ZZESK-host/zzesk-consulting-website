@@ -85,10 +85,10 @@ export type ServicePackage = {
 };
 
 export type RoiExample = {
-  heading: string;
-  hoursRecovered: string;
-  hourlyRate: string;
-  annualValue: string;
+  hoursPerWeek: number;
+  hoursPerYear: number;
+  hourlyRate: number;
+  annualValue: number;
 };
 
 export type ProcessStep = {
@@ -352,24 +352,9 @@ export const home = {
     body:
       "Small improvements to repeated work add up quickly. A task that saves only a few hours each week can recover hundreds of hours each year.",
     examples: [
-      {
-        heading: "5 hours saved per week",
-        hoursRecovered: "260 hours recovered per year",
-        hourlyRate: "$50/hour",
-        annualValue: "$13,000 in annual time value",
-      },
-      {
-        heading: "10 hours saved per week",
-        hoursRecovered: "520 hours recovered per year",
-        hourlyRate: "$50/hour",
-        annualValue: "$26,000 in annual time value",
-      },
-      {
-        heading: "20 hours saved per week",
-        hoursRecovered: "1,040 hours recovered per year",
-        hourlyRate: "$50/hour",
-        annualValue: "$52,000 in annual time value",
-      },
+      { hoursPerWeek: 5, hoursPerYear: 260, hourlyRate: 50, annualValue: 13000 },
+      { hoursPerWeek: 10, hoursPerYear: 520, hourlyRate: 50, annualValue: 26000 },
+      { hoursPerWeek: 20, hoursPerYear: 1040, hourlyRate: 50, annualValue: 52000 },
     ] satisfies RoiExample[],
   },
   process: {

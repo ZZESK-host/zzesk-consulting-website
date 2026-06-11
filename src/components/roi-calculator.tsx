@@ -1,14 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
-function formatNumber(value: number) {
-  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
-}
-
-function formatCurrency(value: number) {
-  return `$${formatNumber(value)}`;
-}
+import { CountUp } from "@/components/count-up";
 
 function clampNumber(value: number, min: number, max: number) {
   if (Number.isNaN(value)) return min;
@@ -30,7 +23,7 @@ export function RoiCalculator() {
   }, [hourlyCost, hoursSavedPerWeek]);
 
   return (
-    <div className="rounded-lg border border-accent-300/22 bg-[linear-gradient(145deg,rgba(19,35,51,0.88),rgba(8,17,26,0.92))] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] sm:p-7">
+    <div className="spotlight-card rounded-lg border border-accent-300/22 bg-[linear-gradient(145deg,rgba(19,35,51,0.88),rgba(8,17,26,0.92))] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] sm:p-7">
       <div className="grid gap-7 lg:grid-cols-[1fr_0.82fr] lg:items-end">
         <div className="grid gap-6">
           <div>
@@ -83,12 +76,16 @@ export function RoiCalculator() {
         <div className="grid gap-3 rounded-lg border border-slate-400/[0.16] bg-white/[0.035] p-5">
           <div>
             <p className="text-sm text-mist-400">Hours recovered per year</p>
-            <p className="mt-1 text-3xl font-semibold text-mist-50">{formatNumber(results.hoursRecoveredPerYear)}</p>
+            <p className="mt-1 font-mono text-3xl font-semibold text-mist-50">
+              <CountUp value={results.hoursRecoveredPerYear} duration={700} />
+            </p>
           </div>
           <div className="h-px bg-slate-400/[0.14]" />
           <div>
             <p className="text-sm text-mist-400">Annual time value</p>
-            <p className="mt-1 text-3xl font-semibold text-accent-300">{formatCurrency(results.annualTimeValue)}</p>
+            <p className="mt-1 font-mono text-3xl font-semibold text-accent-300">
+              <CountUp value={results.annualTimeValue} prefix="$" duration={700} />
+            </p>
           </div>
         </div>
       </div>

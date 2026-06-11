@@ -13,7 +13,7 @@ export function CaseStudyCard({ study, featured = false }: CaseStudyCardProps) {
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-lg border border-slate-400/[0.16] bg-ink-800/72 shadow-edge transition duration-200 hover:-translate-y-1 hover:border-accent-300/40 hover:bg-ink-800",
+        "spotlight-card group flex h-full flex-col overflow-hidden rounded-lg border border-slate-400/[0.16] bg-ink-800/72 shadow-edge transition duration-200 hover:-translate-y-1 hover:border-accent-300/40 hover:bg-ink-800",
         featured && "lg:grid lg:grid-cols-[1.05fr_0.95fr]",
       )}
     >

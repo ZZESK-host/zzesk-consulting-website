@@ -13,7 +13,7 @@ export function ServicePackageCard({ servicePackage }: ServicePackageCardProps) 
   return (
     <article
       className={cn(
-        "relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-400/[0.16] bg-ink-800/72 p-6 shadow-edge transition duration-200 hover:-translate-y-1 hover:border-accent-300/40 hover:bg-ink-800 sm:p-7",
+        "spotlight-card relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-400/[0.16] bg-ink-800/72 p-6 shadow-edge transition duration-200 hover:-translate-y-1 hover:border-accent-300/40 hover:bg-ink-800 sm:p-7",
         servicePackage.featured &&
           "border-accent-300/38 bg-[linear-gradient(150deg,rgba(19,35,51,0.98),rgba(11,22,34,0.94))] shadow-[0_24px_90px_rgba(45,212,191,0.1)]",
       )}

@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { PointerGlow } from "@/components/pointer-glow";
 import { professionalServiceJsonLd, site } from "@/content/site";
 
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -51,8 +59,10 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.variable}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className="min-h-screen bg-ink-950 font-sans antialiased">
+        {/* Gates reveal-hiding styles so content stays visible without JavaScript. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <Script
           id="professional-service-json-ld"
           type="application/ld+json"
@@ -60,6 +70,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}
         />
         {/* TODO: Add privacy-conscious analytics here after choosing the analytics and consent approach. */}
+        <PointerGlow />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>

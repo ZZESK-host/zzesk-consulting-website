@@ -83,6 +83,7 @@ export function NeuralNetworkBackground() {
     let buildStartedAt: number | null = null;
     let dpr = 1;
     let height = 0;
+    let inView = true;
     let nodes: Node[] = [];
     let edges: Edge[] = [];
     let nodeBuildStarts: number[] = [];
@@ -513,7 +514,7 @@ export function NeuralNetworkBackground() {
     }
 
     function draw(time: number) {
-      if (!visible) return;
+      if (!visible || !inView) return;
 
       const buildProgress = buildProgressForTime(time);
       updateNodes(time);
@@ -538,6 +539,7 @@ export function NeuralNetworkBackground() {
         drawVignette();
         return;
       }
+      if (!visible || !inView) return;
       animationFrame = window.requestAnimationFrame(draw);
     }
 
@@ -577,6 +579,21 @@ export function NeuralNetworkBackground() {
       scheduleDraw();
     }
 
+    // Stop the animation loop entirely while the hero is scrolled out of view.
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const wasInView = inView;
+        inView = entries.some((entry) => entry.isIntersecting);
+        if (inView && !wasInView) {
+          scheduleDraw();
+        } else if (!inView) {
+          window.cancelAnimationFrame(animationFrame);
+        }
+      },
+      { rootMargin: "80px 0px" },
+    );
+    intersectionObserver.observe(canvas);
+
     const resizeObserver = new ResizeObserver(setSize);
     resizeObserver.observe(canvas);
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -589,6 +606,7 @@ export function NeuralNetworkBackground() {
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      intersectionObserver.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerleave", onPointerLeave);

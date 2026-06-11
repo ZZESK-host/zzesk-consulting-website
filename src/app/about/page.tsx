@@ -29,19 +29,17 @@ export default function AboutPage() {
           <Reveal>
             <SectionHeading title={about.implementationHeading} />
           </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {about.principles.map((principle, index) => (
-              <Reveal key={principle.title} delay={index * 0.08}>
-                <Card className="h-full">
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-accent-300/20 bg-accent-400/10 text-accent-300">
-                    <principle.icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h2 className="text-lg font-semibold text-mist-50">{principle.title}</h2>
-                  <p className="mt-3 text-sm leading-6 text-mist-300">{principle.body}</p>
-                </Card>
-              </Reveal>
+          <Reveal stagger className="mt-10 grid gap-4 md:grid-cols-3">
+            {about.principles.map((principle) => (
+              <Card key={principle.title} className="h-full">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-accent-300/20 bg-accent-400/10 text-accent-300">
+                  <principle.icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h2 className="text-lg font-semibold text-mist-50">{principle.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-mist-300">{principle.body}</p>
+              </Card>
             ))}
-          </div>
+          </Reveal>
         </Container>
       </section>
 

@@ -17,13 +17,13 @@ export function CaseStudyCard({ study, featured = false }: CaseStudyCardProps) {
         featured && "lg:grid lg:grid-cols-[1.05fr_0.95fr]",
       )}
     >
-      <div className={cn("relative min-h-[15rem] overflow-hidden bg-ink-950", featured && "lg:min-h-full")}>
+      <div className={cn("relative aspect-[16/10] overflow-hidden bg-ink-950", featured && "lg:self-start")}>
         <Image
           src={study.imageSrc}
           alt={study.imageAlt}
           width={1120}
           height={720}
-          className="h-full min-h-[15rem] w-full object-contain transition duration-500 group-hover:scale-[1.02]"
+          className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
           style={{ display: "block", height: "100%", maxWidth: "100%", width: "100%" }}
           sizes={featured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 33vw, 100vw"}
         />

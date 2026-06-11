@@ -48,7 +48,7 @@ export function CaseStudyTabs({ categories, studies }: CaseStudyTabsProps) {
       </div>
 
       <p className="mt-4 text-sm leading-6 text-mist-400">
-        Showing {filteredStudies.length} placeholder example{filteredStudies.length === 1 ? "" : "s"}. Replace placeholders with approved case studies as they become available.
+        Showing {filteredStudies.length} example{filteredStudies.length === 1 ? "" : "s"} of practical dashboards, automations and operator tools.
       </p>
 
       <div className="mt-8 grid gap-5">

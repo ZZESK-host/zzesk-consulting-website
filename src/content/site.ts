@@ -48,7 +48,7 @@ export type CaseStudy = {
   categories: string[];
   imageSrc: string;
   imageAlt: string;
-  replacementPath: string;
+  replacementPath?: string;
   logoLabel?: string;
   problem: string;
   solution: string;
@@ -200,52 +200,39 @@ export const home = {
       "Growing SMEs",
       "Internal Operations",
     ],
-    // Placeholder case studies: replace image files, results, quotes, logos and links once approved content is available.
     caseStudies: [
       {
-        projectName: "Fusion Operations Dashboard",
+        projectName: "TechDrivePlay Automation Operator Desk",
         categories: ["Growing SMEs", "Internal Operations"],
-        imageSrc: "/images/case-studies/fusion-dashboard-placeholder.jpg",
-        imageAlt: "Placeholder screenshot for the Fusion operations dashboard case study",
-        replacementPath: "public/images/case-studies/fusion-dashboard-placeholder.jpg",
-        logoLabel: "Fusion logo placeholder",
+        imageSrc: "/images/case-studies/techdriveplay-operator-desk.png",
+        imageAlt: "TechDrivePlay automation operator desk showing installed bots, statuses and operating groups",
+        logoLabel: "TechDrivePlay",
         problem:
-          "Important business information was spread across different processes, making it hard to quickly see what needed attention.",
+          "TechDrivePlay needed a clearer way to review, launch and monitor multiple automation bots that supported publishing, research and approval workflows.",
         solution:
-          "A single dashboard that brought key information together, showed priorities and reduced the need to check multiple places manually.",
-        before: "Staff manually checked multiple spreadsheets and systems to understand what needed attention.",
-        after: "One dashboard brought the key information together and highlighted the next priority.",
+          "An operator desk that grouped always-running and task-based bots, exposed live statuses and made each workflow easier to review from one place.",
+        before: "Bot activity, queue status and review steps were harder to see across separate scripts and workflows.",
+        after: "Nine connected bots could be reviewed from one operating desk with status, queue and task information visible at a glance.",
         processImprovement:
-          "The day-to-day process became easier to review because the important updates were visible in one place.",
-        result: "[Insert approved time saving, cost saving or improvement metric]",
-        results: [
-          "[Insert approved hours saved per week]",
-          "[Insert approved reduction in manual admin]",
-          "One dashboard for key business updates",
-        ],
-        testimonial: "Add approved Fusion testimonial here.",
-        isPlaceholder: true,
+          "The publishing operation became easier to supervise because review, approval and automation status were collected in one practical interface.",
+        result: "9 bots organised across 2 operating groups",
+        results: ["9 connected bots", "Always-running and task-based workflows", "Central review and approval visibility"],
       },
       {
-        projectName: "Workflow Automation",
-        categories: ["Professional Services", "Trades and Field Services", "Internal Operations"],
-        imageSrc: "/images/case-studies/workflow-automation-placeholder.jpg",
-        imageAlt: "Placeholder screenshot for a workflow automation case study",
-        replacementPath: "public/images/case-studies/workflow-automation-placeholder.jpg",
-        problem: "A repeated internal task took unnecessary manual handling, follow-up and checking.",
+        projectName: "TechDrivePlay PressCore Operator",
+        categories: ["Professional Services", "Growing SMEs", "Internal Operations"],
+        imageSrc: "/images/case-studies/techdriveplay-presscore-operator.png",
+        imageAlt: "PressCore Operator dashboard showing live neural routing, bot status and recent orchestration work",
+        logoLabel: "TechDrivePlay",
+        problem: "The publishing system needed an orchestration layer that could coordinate specialist bots, track recent work and accept operator instructions.",
         solution:
-          "An automation that moved the task through the right steps, reduced manual copying and made the process easier to follow.",
-        before: "Staff copied information between tools and followed up manually to keep the work moving.",
-        after: "The task moved through a clearer process with fewer manual steps and better visibility.",
+          "PressCore Operator gave the team a live command centre for connected bots, including cognitive routing, direct instructions, task memory and operating rules.",
+        before: "Automation runs needed more manual context switching between bot actions, queues and task history.",
+        after: "The operator could talk to PressCore, review recent work and coordinate the connected bot network from a single screen.",
         processImprovement:
-          "The team could spend less time on repeated admin and more time on the work that needed human judgement.",
-        result: "[Insert approved time saving, cost saving or improvement metric]",
-        results: [
-          "[Insert approved manual steps removed]",
-          "[Insert approved hours saved per month]",
-          "Fewer missed handoffs and follow-ups",
-        ],
-        isPlaceholder: true,
+          "Research, outreach and publishing actions became easier to coordinate because the system kept operator context and task state visible.",
+        result: "9 bots and 76 actions connected through PressCore",
+        results: ["Live neural routing view", "Operator chat and task memory", "Guarded execution posture"],
       },
       {
         projectName: "Reporting Dashboard",
@@ -388,8 +375,8 @@ export const home = {
   },
   founder: {
     heading: "Practical tools, built around real work",
-    imageSrc: "/images/founder/founder-photo-placeholder.jpg",
-    imageAlt: "Placeholder portrait for Zachary Skinner, founder of ZZESK Consulting",
+    imageSrc: "/images/founder/zachary-skinner-founder.png",
+    imageAlt: "Portrait of Zachary Skinner, founder of ZZESK Consulting",
     body: [
       "ZZESK Consulting was founded by Zachary Skinner to help businesses replace scattered information and repeated manual work with clearer tools.",
       "The focus is not on adding technology for the sake of it. Each project begins with the real business problem: where time is being lost, where information is hard to find and where a better process could make the business easier to run.",

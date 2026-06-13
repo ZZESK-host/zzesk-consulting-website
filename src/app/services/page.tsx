@@ -8,9 +8,9 @@ import { services } from "@/content/site";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Dashboard and Automation Services",
+  title: "AI Dashboard and Agent Services",
   description:
-    "Explore dashboard audits, workflow automation, reporting dashboards, tool connections, and practical AI help from ZZESK Consulting.",
+    "Explore ZZESK Consulting's branded AI dashboards, custom agent teams, integrations, cloud and on-prem deployment options, usage metering, and support.",
   path: "/services",
 });
 
@@ -23,8 +23,8 @@ export default function ServicesPage() {
             <SectionHeading
               as="h1"
               eyebrow="SERVICES"
-              title="Practical tools for businesses that want less admin."
-              body="ZZESK Consulting builds dashboards and automations that connect the tools you already use, reduce repeated work and make important updates easier to see."
+              title="Done-for-you AI agents inside your own dashboard."
+              body="ZZESK Consulting packages AI implementation into a practical service: a branded dashboard, tailored agents, connected business tools and ongoing support on a subscription."
             />
           </Reveal>
         </Container>
@@ -61,8 +61,8 @@ export default function ServicesPage() {
         <Container>
           <Reveal>
             <CtaPanel
-              heading="Start with one process worth fixing."
-              body="ZZESK Consulting can map a repeated task and turn it into a practical dashboard or automation with clear handover and support."
+              heading="Choose the agent team your business needs."
+              body="Start with a discovery call, then scope the dashboard, agents, integrations and deployment model that fit your workflow and data requirements."
               buttonLabel="Book a Discovery Call"
             />
           </Reveal>

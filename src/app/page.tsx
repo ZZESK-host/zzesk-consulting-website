@@ -228,7 +228,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading title={home.packages.heading} body={home.packages.body} className="max-w-[54rem]" />
           </Reveal>
-          <Reveal stagger className="mt-12 grid gap-5 lg:grid-cols-3">
+          <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {home.packages.cards.map((servicePackage) => (
               <ServicePackageCard key={servicePackage.title} servicePackage={servicePackage} />
             ))}

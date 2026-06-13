@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { AlertCircle } from "lucide-react";
@@ -360,6 +361,20 @@ export function ContactForm() {
           instead.
         </div>
       ) : null}
+
+      <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm leading-6 text-mist-300">
+        <p>
+          ZZESK uses these details to respond to your enquiry, assess fit, prepare proposals and keep ordinary business
+          records. Please do not include passwords, API keys or unnecessary sensitive information. Read the{" "}
+          <Link
+            href="/privacy"
+            className="font-medium text-accent-300 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      </div>
 
       <button
         type="submit"

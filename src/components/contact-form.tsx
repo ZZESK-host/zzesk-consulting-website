@@ -19,10 +19,19 @@ type FormValues = {
   approvalActions: string;
   teamSize: string;
   contactMethod: string;
+  urgency: string;
+  budgetBand: string;
+  preferredFirstStep: string;
+  consentToContact: boolean;
 };
 
+type TextFieldId = Exclude<keyof FormValues, "consentToContact">;
 type FormErrors = Partial<Record<keyof FormValues, string>>;
+type TouchedFields = Partial<Record<keyof FormValues, boolean>>;
 type SubmissionState = "idle" | "sending" | "success" | "error";
+
+const source = "website-contact-form";
+const formVersion = "lead-intake-v1";
 
 const initialValues: FormValues = {
   name: "",
@@ -36,6 +45,10 @@ const initialValues: FormValues = {
   approvalActions: "",
   teamSize: "",
   contactMethod: "",
+  urgency: "",
+  budgetBand: "",
+  preferredFirstStep: "",
+  consentToContact: false,
 };
 
 function validate(values: FormValues): FormErrors {
@@ -55,6 +68,11 @@ function validate(values: FormValues): FormErrors {
   if (!values.approvalActions.trim()) errors.approvalActions = "Describe what should still be checked by a person.";
   if (!values.teamSize) errors.teamSize = "Select an approximate team size.";
   if (!values.contactMethod) errors.contactMethod = "Select a preferred contact method.";
+  if (!values.urgency) errors.urgency = "Select how soon you would like to start.";
+  if (!values.preferredFirstStep) errors.preferredFirstStep = "Select a preferred first step.";
+  if (!values.consentToContact) {
+    errors.consentToContact = "Please confirm ZZESK can contact you about this enquiry.";
+  }
 
   return errors;
 }
@@ -91,26 +109,106 @@ function Field({ id, label, error, required, children }: FieldProps) {
   );
 }
 
+function randomString() {
+  if (typeof window !== "undefined" && window.crypto?.getRandomValues) {
+    const bytes = new Uint8Array(4);
+    window.crypto.getRandomValues(bytes);
+    return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+  }
+
+  return Math.random().toString(36).slice(2, 8);
+}
+
+function splitCurrentTools(value: string) {
+  return value
+    .split(/[\n,]+/)
+    .map((tool) => tool.trim())
+    .filter(Boolean);
+}
+
+function getUtmParams() {
+  const utm: Record<string, string> = {
+    utm_source: "",
+    utm_campaign: "",
+    utm_medium: "",
+  };
+
+  if (typeof window === "undefined") return utm;
+
+  const params = new URLSearchParams(window.location.search);
+  params.forEach((value, key) => {
+    if (key.startsWith("utm_")) {
+      utm[key] = value;
+    }
+  });
+
+  return utm;
+}
+
+function buildSubmission(values: FormValues) {
+  return {
+    event: "website.enquiry.created",
+    enquiryId: `zzesk_${Date.now()}_${randomString()}`,
+    submittedAt: new Date().toISOString(),
+    source,
+    formVersion,
+    pageUrl: typeof window === "undefined" ? "" : window.location.href,
+    name: values.name,
+    businessName: values.businessName,
+    email: values.email,
+    phone: values.phone,
+    processToImprove: values.process,
+    currentTools: splitCurrentTools(values.tools),
+    informationToSeeClearly: values.dashboardView,
+    stepsToAutomate: values.agentActions,
+    humanCheckSteps: values.approvalActions,
+    teamSize: values.teamSize,
+    preferredContactMethod: values.contactMethod,
+    preferredFirstStep: values.preferredFirstStep,
+    urgency: values.urgency,
+    budgetBand: values.budgetBand || "To be confirmed",
+    consentToContact: values.consentToContact,
+    utm: getUtmParams(),
+  };
+}
+
 export function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
-  const [touched, setTouched] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<TouchedFields>({});
   const [submitted, setSubmitted] = useState(false);
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
   const errors = useMemo(() => validate(values), [values]);
-  const visibleErrors = submitted ? errors : Object.fromEntries(Object.keys(touched).map((key) => [key, errors[key as keyof FormValues]]));
+  const visibleErrors = useMemo<FormErrors>(() => {
+    if (submitted) return errors;
+
+    return Object.keys(touched).reduce<FormErrors>((current, key) => {
+      const field = key as keyof FormValues;
+      if (errors[field]) current[field] = errors[field];
+      return current;
+    }, {});
+  }, [errors, submitted, touched]);
   const submitting = submissionState === "sending";
 
-  function updateValue(id: keyof FormValues, value: string) {
-    setValues((current) => ({ ...current, [id]: value }));
+  function resetSubmissionState() {
     if (submissionState !== "idle") {
       setSubmissionState("idle");
       setSubmissionMessage("");
     }
   }
 
+  function updateValue(id: TextFieldId, value: string) {
+    setValues((current) => ({ ...current, [id]: value }));
+    resetSubmissionState();
+  }
+
+  function updateConsent(value: boolean) {
+    setValues((current) => ({ ...current, consentToContact: value }));
+    resetSubmissionState();
+  }
+
   function markTouched(id: keyof FormValues) {
-    setTouched((current) => ({ ...current, [id]: "true" }));
+    setTouched((current) => ({ ...current, [id]: true }));
   }
 
   function describedBy(id: keyof FormValues) {
@@ -142,7 +240,7 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(buildSubmission(values)),
       });
       const result = (await response.json().catch(() => null)) as { message?: string } | null;
 
@@ -156,7 +254,7 @@ export function ContactForm() {
       setTouched({});
       setSubmitted(false);
       setSubmissionState("success");
-      setSubmissionMessage("Thanks, your enquiry has been sent. I will reply as soon as possible.");
+      setSubmissionMessage(result?.message || "Thanks, your enquiry has been sent. I will reply as soon as possible.");
     } catch {
       setSubmissionState("error");
       setSubmissionMessage("Your enquiry could not be sent.");
@@ -337,6 +435,86 @@ export function ContactForm() {
             <option value="either">Either email or phone</option>
           </select>
         </Field>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-3">
+        <Field id="urgency" label="Urgency" required error={visibleErrors.urgency}>
+          <select
+            id="urgency"
+            name="urgency"
+            value={values.urgency}
+            onChange={(event) => updateValue("urgency", event.target.value)}
+            onBlur={() => markTouched("urgency")}
+            className={inputClass("urgency")}
+            aria-invalid={Boolean(visibleErrors.urgency)}
+            aria-describedby={describedBy("urgency")}
+          >
+            <option value="">Select urgency</option>
+            <option value="This week">This week</option>
+            <option value="This month">This month</option>
+            <option value="Just exploring">Just exploring</option>
+          </select>
+        </Field>
+
+        <Field id="budgetBand" label="Budget band, optional" error={visibleErrors.budgetBand}>
+          <select
+            id="budgetBand"
+            name="budgetBand"
+            value={values.budgetBand}
+            onChange={(event) => updateValue("budgetBand", event.target.value)}
+            onBlur={() => markTouched("budgetBand")}
+            className={inputClass("budgetBand")}
+            aria-invalid={Boolean(visibleErrors.budgetBand)}
+            aria-describedby={describedBy("budgetBand")}
+          >
+            <option value="">To be confirmed</option>
+            <option value="Under $2,000">Under $2,000</option>
+            <option value="$2,000-$5,000">$2,000-$5,000</option>
+            <option value="$5,000-$10,000">$5,000-$10,000</option>
+            <option value="$10,000+">$10,000+</option>
+          </select>
+        </Field>
+
+        <Field id="preferredFirstStep" label="Preferred first step" required error={visibleErrors.preferredFirstStep}>
+          <select
+            id="preferredFirstStep"
+            name="preferredFirstStep"
+            value={values.preferredFirstStep}
+            onChange={(event) => updateValue("preferredFirstStep", event.target.value)}
+            onBlur={() => markTouched("preferredFirstStep")}
+            className={inputClass("preferredFirstStep")}
+            aria-invalid={Boolean(visibleErrors.preferredFirstStep)}
+            aria-describedby={describedBy("preferredFirstStep")}
+          >
+            <option value="">Select first step</option>
+            <option value="Email reply">Email reply</option>
+            <option value="Book intro call">Book intro call</option>
+            <option value="Send proposal questions">Send proposal questions</option>
+          </select>
+        </Field>
+      </div>
+
+      <div>
+        <label className="flex gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm leading-6 text-mist-200">
+          <input
+            id="consentToContact"
+            name="consentToContact"
+            type="checkbox"
+            checked={values.consentToContact}
+            onChange={(event) => updateConsent(event.target.checked)}
+            onBlur={() => markTouched("consentToContact")}
+            className="mt-1 h-4 w-4 shrink-0 rounded border-white/20 bg-ink-950 text-accent-400 focus:ring-2 focus:ring-accent-300/35"
+            aria-invalid={Boolean(visibleErrors.consentToContact)}
+            aria-describedby={describedBy("consentToContact")}
+          />
+          <span>I&apos;m happy for ZZESK to contact me about this enquiry.</span>
+        </label>
+        {visibleErrors.consentToContact ? (
+          <p id="consentToContact-error" className="mt-2 flex gap-2 text-sm text-red-300">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            <span>{visibleErrors.consentToContact}</span>
+          </p>
+        ) : null}
       </div>
 
       {submissionState === "success" ? (

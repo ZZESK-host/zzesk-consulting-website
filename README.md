@@ -52,7 +52,23 @@ The contact form component is:
 src/components/contact-form.tsx
 ```
 
-It validates fields on the front end and intentionally does not show a fake success state. Connect it to a backend route, CRM, or form service before enabling real submissions.
+It validates fields on the front end and posts to the server route at:
+
+```text
+src/app/api/contact/route.ts
+```
+
+Configure the server route with these environment variables:
+
+```text
+ZZESK_COMMAND_CENTRE_URL=https://your-command-centre-domain.com
+ZZESK_COMMAND_CENTRE_WEBHOOK_SECRET=shared-webhook-secret
+RESEND_API_KEY=your-resend-key
+CONTACT_TO_EMAIL=zack@zzesk.com
+CONTACT_FROM_EMAIL=ZZESK Website <website@zzesk.com>
+```
+
+If `ZZESK_COMMAND_CENTRE_URL` is not set, local submissions are posted to `http://127.0.0.1:3000/api/webhooks/website-enquiry`. If the Command Centre is unavailable, the route falls back to the readable Resend notification email when email is configured.
 
 ## Adding Analytics Later
 
@@ -84,7 +100,6 @@ Adjust density, movement speed, line distance, cursor influence, and colours thr
 
 ## Remaining TODO Items Before Launch
 
-- Connect the contact form to a backend, CRM, or form service.
 - Review and finalize privacy policy wording with appropriate legal guidance.
 - Add analytics only after choosing the tool and consent approach.
 - Replace the favicon placeholder with final brand assets if desired.

@@ -531,7 +531,6 @@ export const contact = {
   heading: "Let's talk about the process taking too much time.",
   body:
     "The first conversation is about the task, report or process your team repeats often, the tools involved and whether a dashboard or automation could save time.",
-  emailLine: `Prefer email? Contact ${site.email}`,
 };
 
 export const footerLinks = [

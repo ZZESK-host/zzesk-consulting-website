@@ -12,16 +12,7 @@ type FormValues = {
   businessName: string;
   email: string;
   phone: string;
-  process: string;
-  tools: string;
-  dashboardView: string;
-  agentActions: string;
-  approvalActions: string;
-  teamSize: string;
-  contactMethod: string;
-  urgency: string;
-  budgetBand: string;
-  preferredFirstStep: string;
+  processToImprove: string;
   consentToContact: boolean;
 };
 
@@ -31,23 +22,14 @@ type TouchedFields = Partial<Record<keyof FormValues, boolean>>;
 type SubmissionState = "idle" | "sending" | "success" | "error";
 
 const source = "website-contact-form";
-const formVersion = "lead-intake-v1";
+const formVersion = "lead-intake-v2";
 
 const initialValues: FormValues = {
   name: "",
   businessName: "",
   email: "",
   phone: "",
-  process: "",
-  tools: "",
-  dashboardView: "",
-  agentActions: "",
-  approvalActions: "",
-  teamSize: "",
-  contactMethod: "",
-  urgency: "",
-  budgetBand: "",
-  preferredFirstStep: "",
+  processToImprove: "",
   consentToContact: false,
 };
 
@@ -61,15 +43,9 @@ function validate(values: FormValues): FormErrors {
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = "Enter a valid email address.";
   }
-  if (!values.process.trim()) errors.process = "Describe the process you would like to improve.";
-  if (!values.tools.trim()) errors.tools = "List the tools your business currently uses.";
-  if (!values.dashboardView.trim()) errors.dashboardView = "Describe what you need to see more clearly.";
-  if (!values.agentActions.trim()) errors.agentActions = "Describe what should be automated or made easier.";
-  if (!values.approvalActions.trim()) errors.approvalActions = "Describe what should still be checked by a person.";
-  if (!values.teamSize) errors.teamSize = "Select an approximate team size.";
-  if (!values.contactMethod) errors.contactMethod = "Select a preferred contact method.";
-  if (!values.urgency) errors.urgency = "Select how soon you would like to start.";
-  if (!values.preferredFirstStep) errors.preferredFirstStep = "Select a preferred first step.";
+  if (!values.processToImprove.trim()) {
+    errors.processToImprove = "Describe what you would like ZZESK to help improve or automate.";
+  }
   if (!values.consentToContact) {
     errors.consentToContact = "Please confirm ZZESK can contact you about this enquiry.";
   }
@@ -119,13 +95,6 @@ function randomString() {
   return Math.random().toString(36).slice(2, 8);
 }
 
-function splitCurrentTools(value: string) {
-  return value
-    .split(/[\n,]+/)
-    .map((tool) => tool.trim())
-    .filter(Boolean);
-}
-
 function getUtmParams() {
   const utm: Record<string, string> = {
     utm_source: "",
@@ -157,16 +126,7 @@ function buildSubmission(values: FormValues) {
     businessName: values.businessName,
     email: values.email,
     phone: values.phone,
-    processToImprove: values.process,
-    currentTools: splitCurrentTools(values.tools),
-    informationToSeeClearly: values.dashboardView,
-    stepsToAutomate: values.agentActions,
-    humanCheckSteps: values.approvalActions,
-    teamSize: values.teamSize,
-    preferredContactMethod: values.contactMethod,
-    preferredFirstStep: values.preferredFirstStep,
-    urgency: values.urgency,
-    budgetBand: values.budgetBand || "To be confirmed",
+    processToImprove: values.processToImprove,
     consentToContact: values.consentToContact,
     utm: getUtmParams(),
   };
@@ -262,8 +222,8 @@ export function ContactForm() {
   }
 
   return (
-    <form className="grid gap-5" onSubmit={onSubmit} noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form className="grid gap-4" onSubmit={onSubmit} noValidate>
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field id="name" label="Name" required error={visibleErrors.name}>
           <input
             id="name"
@@ -293,7 +253,7 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field id="email" label="Email" required error={visibleErrors.email}>
           <input
             id="email"
@@ -325,174 +285,24 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <Field id="process" label="What process would you like to improve?" required error={visibleErrors.process}>
+      <Field
+        id="processToImprove"
+        label="What would you like ZZESK to help you improve or automate?"
+        required
+        error={visibleErrors.processToImprove}
+      >
         <textarea
-          id="process"
-          name="process"
+          id="processToImprove"
+          name="processToImprove"
           rows={5}
-          value={values.process}
-          onChange={(event) => updateValue("process", event.target.value)}
-          onBlur={() => markTouched("process")}
-          className={cn(inputClass("process"), "resize-y")}
-          aria-invalid={Boolean(visibleErrors.process)}
-          aria-describedby={describedBy("process")}
+          value={values.processToImprove}
+          onChange={(event) => updateValue("processToImprove", event.target.value)}
+          onBlur={() => markTouched("processToImprove")}
+          className={cn(inputClass("processToImprove"), "resize-y")}
+          aria-invalid={Boolean(visibleErrors.processToImprove)}
+          aria-describedby={describedBy("processToImprove")}
         />
       </Field>
-
-      <Field id="tools" label="What tools does your business currently use?" required error={visibleErrors.tools}>
-        <textarea
-          id="tools"
-          name="tools"
-          rows={3}
-          value={values.tools}
-          onChange={(event) => updateValue("tools", event.target.value)}
-          onBlur={() => markTouched("tools")}
-          className={cn(inputClass("tools"), "resize-y")}
-          aria-invalid={Boolean(visibleErrors.tools)}
-          aria-describedby={describedBy("tools")}
-        />
-      </Field>
-
-      <Field id="dashboardView" label="What do you need to see more clearly?" required error={visibleErrors.dashboardView}>
-        <textarea
-          id="dashboardView"
-          name="dashboardView"
-          rows={3}
-          value={values.dashboardView}
-          onChange={(event) => updateValue("dashboardView", event.target.value)}
-          onBlur={() => markTouched("dashboardView")}
-          className={cn(inputClass("dashboardView"), "resize-y")}
-          aria-invalid={Boolean(visibleErrors.dashboardView)}
-          aria-describedby={describedBy("dashboardView")}
-        />
-      </Field>
-
-      <div className="grid gap-5 lg:grid-cols-2">
-        <Field id="agentActions" label="What repetitive steps should be automated or made easier?" required error={visibleErrors.agentActions}>
-          <textarea
-            id="agentActions"
-            name="agentActions"
-            rows={4}
-            value={values.agentActions}
-            onChange={(event) => updateValue("agentActions", event.target.value)}
-            onBlur={() => markTouched("agentActions")}
-            className={cn(inputClass("agentActions"), "resize-y")}
-            aria-invalid={Boolean(visibleErrors.agentActions)}
-            aria-describedby={describedBy("agentActions")}
-          />
-        </Field>
-
-        <Field id="approvalActions" label="Which steps should still be checked by a person?" required error={visibleErrors.approvalActions}>
-          <textarea
-            id="approvalActions"
-            name="approvalActions"
-            rows={4}
-            value={values.approvalActions}
-            onChange={(event) => updateValue("approvalActions", event.target.value)}
-            onBlur={() => markTouched("approvalActions")}
-            className={cn(inputClass("approvalActions"), "resize-y")}
-            aria-invalid={Boolean(visibleErrors.approvalActions)}
-            aria-describedby={describedBy("approvalActions")}
-          />
-        </Field>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field id="teamSize" label="Approximate team size" required error={visibleErrors.teamSize}>
-          <select
-            id="teamSize"
-            name="teamSize"
-            value={values.teamSize}
-            onChange={(event) => updateValue("teamSize", event.target.value)}
-            onBlur={() => markTouched("teamSize")}
-            className={inputClass("teamSize")}
-            aria-invalid={Boolean(visibleErrors.teamSize)}
-            aria-describedby={describedBy("teamSize")}
-          >
-            <option value="">Select team size</option>
-            <option value="1-5">1-5 people</option>
-            <option value="6-20">6-20 people</option>
-            <option value="21-50">21-50 people</option>
-            <option value="51-200">51-200 people</option>
-            <option value="200+">200+ people</option>
-          </select>
-        </Field>
-
-        <Field id="contactMethod" label="Preferred contact method" required error={visibleErrors.contactMethod}>
-          <select
-            id="contactMethod"
-            name="contactMethod"
-            value={values.contactMethod}
-            onChange={(event) => updateValue("contactMethod", event.target.value)}
-            onBlur={() => markTouched("contactMethod")}
-            className={inputClass("contactMethod")}
-            aria-invalid={Boolean(visibleErrors.contactMethod)}
-            aria-describedby={describedBy("contactMethod")}
-          >
-            <option value="">Select contact method</option>
-            <option value="email">Email</option>
-            <option value="phone">Phone</option>
-            <option value="either">Either email or phone</option>
-          </select>
-        </Field>
-      </div>
-
-      <div className="grid gap-5 lg:grid-cols-3">
-        <Field id="urgency" label="Urgency" required error={visibleErrors.urgency}>
-          <select
-            id="urgency"
-            name="urgency"
-            value={values.urgency}
-            onChange={(event) => updateValue("urgency", event.target.value)}
-            onBlur={() => markTouched("urgency")}
-            className={inputClass("urgency")}
-            aria-invalid={Boolean(visibleErrors.urgency)}
-            aria-describedby={describedBy("urgency")}
-          >
-            <option value="">Select urgency</option>
-            <option value="This week">This week</option>
-            <option value="This month">This month</option>
-            <option value="Just exploring">Just exploring</option>
-          </select>
-        </Field>
-
-        <Field id="budgetBand" label="Budget band, optional" error={visibleErrors.budgetBand}>
-          <select
-            id="budgetBand"
-            name="budgetBand"
-            value={values.budgetBand}
-            onChange={(event) => updateValue("budgetBand", event.target.value)}
-            onBlur={() => markTouched("budgetBand")}
-            className={inputClass("budgetBand")}
-            aria-invalid={Boolean(visibleErrors.budgetBand)}
-            aria-describedby={describedBy("budgetBand")}
-          >
-            <option value="">To be confirmed</option>
-            <option value="Under $2,000">Under $2,000</option>
-            <option value="$2,000-$5,000">$2,000-$5,000</option>
-            <option value="$5,000-$10,000">$5,000-$10,000</option>
-            <option value="$10,000+">$10,000+</option>
-          </select>
-        </Field>
-
-        <Field id="preferredFirstStep" label="Preferred first step" required error={visibleErrors.preferredFirstStep}>
-          <select
-            id="preferredFirstStep"
-            name="preferredFirstStep"
-            value={values.preferredFirstStep}
-            onChange={(event) => updateValue("preferredFirstStep", event.target.value)}
-            onBlur={() => markTouched("preferredFirstStep")}
-            className={inputClass("preferredFirstStep")}
-            aria-invalid={Boolean(visibleErrors.preferredFirstStep)}
-            aria-describedby={describedBy("preferredFirstStep")}
-          >
-            <option value="">Select first step</option>
-            <option value="Email reply">Email reply</option>
-            <option value="Book intro call">Book intro call</option>
-            <option value="Send proposal questions">Send proposal questions</option>
-          </select>
-        </Field>
-      </div>
 
       <div>
         <label className="flex gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm leading-6 text-mist-200">

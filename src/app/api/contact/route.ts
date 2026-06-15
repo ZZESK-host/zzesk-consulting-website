@@ -16,22 +16,7 @@ type ContactPayload = {
   businessName?: unknown;
   email?: unknown;
   phone?: unknown;
-  process?: unknown;
   processToImprove?: unknown;
-  tools?: unknown;
-  currentTools?: unknown;
-  dashboardView?: unknown;
-  informationToSeeClearly?: unknown;
-  agentActions?: unknown;
-  stepsToAutomate?: unknown;
-  approvalActions?: unknown;
-  humanCheckSteps?: unknown;
-  teamSize?: unknown;
-  contactMethod?: unknown;
-  preferredContactMethod?: unknown;
-  preferredFirstStep?: unknown;
-  urgency?: unknown;
-  budgetBand?: unknown;
   consentToContact?: unknown;
   utm?: unknown;
 };
@@ -41,22 +26,13 @@ type EnquiryPayload = {
   enquiryId: string;
   submittedAt: string;
   source: "website-contact-form";
-  formVersion: "lead-intake-v1";
+  formVersion: "lead-intake-v2";
   pageUrl: string;
   name: string;
   businessName: string;
   email: string;
   phone: string;
   processToImprove: string;
-  currentTools: string[];
-  informationToSeeClearly: string;
-  stepsToAutomate: string;
-  humanCheckSteps: string;
-  teamSize: string;
-  preferredContactMethod: string;
-  preferredFirstStep: string;
-  urgency: string;
-  budgetBand: string;
   consentToContact: boolean;
   utm: Record<string, string>;
 };
@@ -78,13 +54,6 @@ const requiredFields: Array<[keyof EnquiryPayload, string]> = [
   ["businessName", "Business name"],
   ["email", "Email"],
   ["processToImprove", "Process to improve"],
-  ["informationToSeeClearly", "Information to see clearly"],
-  ["stepsToAutomate", "Steps to automate"],
-  ["humanCheckSteps", "Human check steps"],
-  ["teamSize", "Team size"],
-  ["preferredContactMethod", "Preferred contact method"],
-  ["preferredFirstStep", "Preferred first step"],
-  ["urgency", "Urgency"],
 ];
 
 function clean(value: unknown, maxLength = 3000) {
@@ -93,15 +62,6 @@ function clean(value: unknown, maxLength = 3000) {
 
 function cleanBoolean(value: unknown) {
   return value === true || value === "true" || value === "on";
-}
-
-function cleanTools(value: unknown) {
-  const values = Array.isArray(value) ? value : clean(value).split(/[\n,]+/);
-
-  return values
-    .map((tool) => clean(tool, 120))
-    .filter(Boolean)
-    .slice(0, 25);
 }
 
 function cleanUtm(value: unknown) {
@@ -146,22 +106,13 @@ function normalisePayload(payload: ContactPayload): EnquiryPayload {
     enquiryId: createEnquiryId(payload.enquiryId),
     submittedAt: createSubmittedAt(payload.submittedAt),
     source: "website-contact-form",
-    formVersion: "lead-intake-v1",
+    formVersion: "lead-intake-v2",
     pageUrl: clean(payload.pageUrl, 1000),
     name: clean(payload.name, 200),
     businessName: clean(payload.businessName, 200),
     email: clean(payload.email, 320).toLowerCase(),
     phone: clean(payload.phone, 80),
-    processToImprove: clean(payload.processToImprove || payload.process),
-    currentTools: cleanTools(payload.currentTools || payload.tools),
-    informationToSeeClearly: clean(payload.informationToSeeClearly || payload.dashboardView),
-    stepsToAutomate: clean(payload.stepsToAutomate || payload.agentActions),
-    humanCheckSteps: clean(payload.humanCheckSteps || payload.approvalActions),
-    teamSize: clean(payload.teamSize, 80),
-    preferredContactMethod: clean(payload.preferredContactMethod || payload.contactMethod, 80),
-    preferredFirstStep: clean(payload.preferredFirstStep, 120),
-    urgency: clean(payload.urgency, 80),
-    budgetBand: clean(payload.budgetBand, 120) || "To be confirmed",
+    processToImprove: clean(payload.processToImprove),
     consentToContact: cleanBoolean(payload.consentToContact),
     utm: cleanUtm(payload.utm),
   };
@@ -175,7 +126,6 @@ function validatePayload(payload: EnquiryPayload) {
     })
     .map(([, label]) => label);
 
-  if (payload.currentTools.length === 0) missing.push("Current tools");
   if (!payload.consentToContact) missing.push("Consent to contact");
 
   if (missing.length > 0) {
@@ -322,15 +272,6 @@ async function sendNotificationEmail(payload: EnquiryPayload): Promise<EmailResu
     ["Email", payload.email],
     ["Phone", payload.phone],
     ["Process to improve", payload.processToImprove],
-    ["Current tools", payload.currentTools.join(", ")],
-    ["Information they want to see clearly", payload.informationToSeeClearly],
-    ["Steps to automate or make easier", payload.stepsToAutomate],
-    ["Steps that still need a person to check them", payload.humanCheckSteps],
-    ["Team size", payload.teamSize],
-    ["Preferred contact method", payload.preferredContactMethod],
-    ["Preferred first step", payload.preferredFirstStep],
-    ["Urgency", payload.urgency],
-    ["Budget band", payload.budgetBand],
     ["Consent to contact", payload.consentToContact ? "Yes" : "No"],
     ["Page URL", payload.pageUrl],
     ["UTM", JSON.stringify(payload.utm, null, 2)],

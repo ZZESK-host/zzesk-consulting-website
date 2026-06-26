@@ -281,8 +281,8 @@ export default function HomePage() {
                   <Image
                     src={home.founder.imageSrc}
                     alt={home.founder.imageAlt}
-                    width={1284}
-                    height={2778}
+                    width={1086}
+                    height={935}
                     className="aspect-[5/4] w-full object-cover"
                     style={{ display: "block", height: "auto", maxWidth: "100%", objectPosition: "center 22%", width: "100%" }}
                     sizes="(min-width: 1024px) 40vw, 100vw"

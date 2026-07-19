@@ -27,7 +27,7 @@ export const site = {
   defaultDescription:
     "ZZESK Consulting builds custom dashboards and automations that cut down repetitive admin and bring business information into one place.",
   tagline: "A branded business dashboard with custom AI agents, integrations and automation built around the customer's workflow.",
-  bookingLabel: "Book a Discovery Call",
+  bookingLabel: "Start a Conversation",
   bookingHref: "/contact",
   social: {
     // Swap this config value if the LinkedIn profile changes; leave it empty to hide the footer link until the real URL is known.
@@ -405,7 +405,7 @@ export const home = {
   finalCta: {
     heading: "Start with one process worth improving.",
     body:
-      "Book a discovery call to talk through one repeated task, report or workflow that takes too much time, then decide whether a Branded AI Dashboard could help.",
+      "Send an enquiry to talk through one repeated task, report or workflow that takes too much time, then decide by email whether a Branded AI Dashboard could help.",
   },
 };
 

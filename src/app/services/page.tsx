@@ -62,8 +62,8 @@ export default function ServicesPage() {
           <Reveal>
             <CtaPanel
               heading="Choose the AI dashboard package your business needs."
-              body="Start with a discovery call, then scope the dashboard, agents, integrations and deployment model that fit your workflow and data requirements."
-              buttonLabel="Book a Discovery Call"
+              body="Start by email, then scope the dashboard, agents, integrations and deployment model that fit your workflow and data requirements."
+              buttonLabel="Start a Conversation"
             />
           </Reveal>
         </Container>

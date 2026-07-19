@@ -23,8 +23,8 @@ export default function ServicesPage() {
             <SectionHeading
               as="h1"
               eyebrow="SERVICES"
-              title="Done-for-you AI agents inside your own dashboard."
-              body="ZZESK Consulting packages AI implementation into a practical service: a branded dashboard, tailored agents, connected business tools and ongoing support on a subscription."
+              title="Branded AI Dashboards, built around your workflow."
+              body="ZZESK Consulting provides a practical service combining a branded business dashboard, custom AI agents, connected tools, workflow automation and ongoing support."
             />
           </Reveal>
         </Container>
@@ -61,7 +61,7 @@ export default function ServicesPage() {
         <Container>
           <Reveal>
             <CtaPanel
-              heading="Choose the agent team your business needs."
+              heading="Choose the AI dashboard package your business needs."
               body="Start with a discovery call, then scope the dashboard, agents, integrations and deployment model that fit your workflow and data requirements."
               buttonLabel="Book a Discovery Call"
             />

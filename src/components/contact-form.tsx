@@ -44,7 +44,7 @@ function validate(values: FormValues): FormErrors {
     errors.email = "Enter a valid email address.";
   }
   if (!values.processToImprove.trim()) {
-    errors.processToImprove = "Describe what you would like ZZESK to help improve or automate.";
+      errors.processToImprove = "Describe what you would like ZZESK Consulting to help improve or automate.";
   }
   if (!values.consentToContact) {
     errors.consentToContact = "Please confirm ZZESK can contact you about this enquiry.";
@@ -287,7 +287,7 @@ export function ContactForm() {
 
       <Field
         id="processToImprove"
-        label="What would you like ZZESK to help you improve or automate?"
+        label="What would you like ZZESK Consulting to help you improve or automate?"
         required
         error={visibleErrors.processToImprove}
       >
@@ -317,7 +317,7 @@ export function ContactForm() {
             aria-invalid={Boolean(visibleErrors.consentToContact)}
             aria-describedby={describedBy("consentToContact")}
           />
-          <span>I&apos;m happy for ZZESK to contact me about this enquiry.</span>
+          <span>I&apos;m happy for ZZESK Consulting to contact me about this enquiry.</span>
         </label>
         {visibleErrors.consentToContact ? (
           <p id="consentToContact-error" className="mt-2 flex gap-2 text-sm text-red-300">
@@ -352,7 +352,7 @@ export function ContactForm() {
 
       <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm leading-6 text-mist-300">
         <p>
-          ZZESK uses these details to respond to your enquiry, assess fit, prepare proposals and keep ordinary business
+          ZZESK Consulting uses these details to respond to your enquiry, assess fit, prepare proposals and keep ordinary business
           records. Please do not include passwords, API keys or unnecessary sensitive information. Read the{" "}
           <Link
             href="/privacy"

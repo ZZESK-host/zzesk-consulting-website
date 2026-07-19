@@ -159,7 +159,7 @@ export default function PrivacyPage() {
               as="h1"
               eyebrow="PRIVACY"
               title="Privacy Policy"
-              body="How ZZESK Consulting handles personal information for enquiries, customer projects, dashboards and AI-assisted services."
+              body="How ZZESK Consulting handles personal information for enquiries, customer projects, Branded AI Dashboards and AI-assisted services."
             />
           </Reveal>
         </Container>

@@ -26,7 +26,7 @@ export const site = {
   defaultTitle: "ZZESK Consulting | Dashboards and Workflow Automation",
   defaultDescription:
     "ZZESK Consulting builds custom dashboards and automations that cut down repetitive admin and bring business information into one place.",
-  tagline: "Custom dashboards and automation for businesses that want less admin and clearer information.",
+  tagline: "A branded business dashboard with custom AI agents, integrations and automation built around the customer's workflow.",
   bookingLabel: "Book a Discovery Call",
   bookingHref: "/contact",
   social: {
@@ -99,16 +99,16 @@ export type ProcessStep = {
 
 export const home = {
   hero: {
-    eyebrow: "DASHBOARDS AND WORKFLOW AUTOMATION",
-    heading: "Bring your business information into one clear place.",
+    eyebrow: "BRANDED AI DASHBOARDS + WORKFLOW AUTOMATION",
+    heading: "A clearer way to run the work behind your business.",
     body:
-      "ZZESK Consulting builds custom dashboards and automations that cut down repetitive admin, show what needs attention and help growing businesses save time.",
+      "ZZESK Consulting builds branded business dashboards with custom AI agents, integrations and automation designed around the way your team actually works.",
     trust:
-      "For small and medium-sized businesses that are tired of chasing updates across spreadsheets, emails and disconnected tools.",
-    dashboardLine: "Built around the way your business actually works.",
+      "For growing businesses that want less repetitive admin, clearer information and better visibility across day-to-day operations.",
+    dashboardLine: "Your workflow, your dashboard, your AI team.",
   },
   outcomes: {
-    note: "Results depend on the task, team and setup.",
+    note: "Results depend on the workflow, team, tools and business setup.",
     cards: [
       {
         title: "Cut down repetitive admin",
@@ -191,7 +191,7 @@ export const home = {
   proof: {
     heading: "Examples built around real business problems",
     body:
-      "Every business works differently. That is why each dashboard or automation is built around a real process, whether that means reducing admin, improving visibility or bringing scattered information into one place.",
+      "Every business works differently. That is why each Branded AI Dashboard is built around a real process, whether that means reducing admin, improving visibility, connecting AI agents or bringing scattered information into one place.",
     categories: [
       "Professional Services",
       "Trades and Field Services",
@@ -277,18 +277,18 @@ export const home = {
     ] satisfies Testimonial[],
   },
   packages: {
-    heading: "Choose the AI dashboard package that fits your team",
+    heading: "Choose the Branded AI Dashboard package that fits your team.",
     body:
-      "Every package gives you a branded dashboard with tailored AI agents inside it. Start with a focused setup, then add more agents, users, integrations and safeguards as the value proves itself.",
+      "Every package gives you a branded business dashboard with custom AI agents, connected tools and automation built around your workflow. Start with one focused setup, then add more agents, users, integrations and safeguards as your needs grow.",
     cards: [
       {
         title: "Starter",
-        subtitle: "A focused AI dashboard for one high-value workflow.",
+        subtitle: "A focused dashboard for one high-value workflow.",
         description:
-          "Start with a branded dashboard and a small set of agents built around one repeated process, such as lead intake, follow-up or document sorting.",
+          "Start with a branded dashboard and a small set of AI agents built around one repeated process, such as lead intake, follow-up, document sorting or internal administration.",
         includes: [
-          "Branded customer dashboard",
-          "1-2 tailored AI agents",
+          "Branded business dashboard",
+          "1-2 custom AI agents",
           "Core workflow setup",
           "Basic tool connection",
           "Usage cap and activity logs",
@@ -300,11 +300,11 @@ export const home = {
       },
       {
         title: "Growth",
-        subtitle: "A team of agents for busy operations.",
+        subtitle: "A connected dashboard for busy operations.",
         description:
-          "Add more specialist agents and connect them to the systems your team already uses, so repeated work can be handled from one clear interface.",
+          "Add more specialist AI agents and connect them to the systems your team already uses, so repeated work can be managed from one clear interface.",
         includes: [
-          "3-5 tailored AI agents",
+          "3-5 custom AI agents",
           "Lead, support or admin workflows",
           "CRM, email, calendar or form integrations",
           "Approval steps for important actions",
@@ -318,11 +318,11 @@ export const home = {
       },
       {
         title: "Pro",
-        subtitle: "A broader AI operations hub.",
+        subtitle: "A broader dashboard for multiple workflows.",
         description:
-          "Build a more capable dashboard for teams with multiple workflows, more users, stronger reporting needs and higher automation volume.",
+          "Build a more capable Branded AI Dashboard for teams with multiple workflows, more users, stronger reporting needs and higher automation volume.",
         includes: [
-          "6+ tailored AI agents",
+          "6+ custom AI agents",
           "Multiple connected workflows",
           "Advanced integrations",
           "Role-based dashboard access",
@@ -335,9 +335,9 @@ export const home = {
       },
       {
         title: "Enterprise",
-        subtitle: "Private-cloud or on-premises AI deployment.",
+        subtitle: "A private or customer-controlled AI dashboard deployment.",
         description:
-          "For organisations with stricter data, security or infrastructure requirements, ZZESK can scope a private or on-premises build with custom controls.",
+          "For organisations with stricter data, security or infrastructure requirements, ZZESK Consulting can scope a private-cloud, on-premises or customer-controlled Branded AI Dashboard.",
         includes: [
           "Private-cloud or on-prem option",
           "Custom agent and integration scope",
@@ -353,9 +353,9 @@ export const home = {
     ] satisfies ServicePackage[],
   },
   roi: {
-    heading: "What could a better process save your business?",
+    heading: "What could a better workflow save your business?",
     body:
-      "Small improvements to repeated work add up quickly. A task that saves only a few hours each week can recover hundreds of hours each year.",
+      "Small improvements to repeated work add up quickly. A task that saves only a few hours each week can recover hundreds of hours over a year.",
     examples: [
       { hoursPerWeek: 5, hoursPerYear: 260, hourlyRate: 50, annualValue: 13000 },
       { hoursPerWeek: 10, hoursPerYear: 520, hourlyRate: 50, annualValue: 26000 },
@@ -363,7 +363,7 @@ export const home = {
     ] satisfies RoiExample[],
   },
   process: {
-    heading: "A clear path from messy process to useful dashboard",
+    heading: "A clear path from messy process to useful dashboard.",
     steps: [
       {
         number: "01",
@@ -380,13 +380,13 @@ export const home = {
       {
         number: "03",
         title: "Build",
-        body: "Build a dashboard or automation around the way your team actually works.",
+        body: "Build a Branded AI Dashboard, AI agents and automations around the way your team actually works.",
         icon: Wrench,
       },
       {
         number: "04",
         title: "Refine",
-        body: "Test it with real use, improve it and support the handover.",
+        body: "Test it with real use, improve it and support the handover into day-to-day operations.",
         icon: CheckCircle2,
       },
     ] satisfies ProcessStep[],
@@ -403,9 +403,9 @@ export const home = {
     attributes: ["Focused on real tasks", "Built around your business", "Practical build", "Clear handover and support"],
   },
   finalCta: {
-    heading: "Start with one process worth fixing.",
+    heading: "Start with one process worth improving.",
     body:
-      "Book a discovery call to talk through one repeated task, report or process that takes too much time, then decide whether a dashboard or automation could help.",
+      "Book a discovery call to talk through one repeated task, report or workflow that takes too much time, then decide whether a Branded AI Dashboard could help.",
   },
 };
 
@@ -530,7 +530,7 @@ export const about = {
 export const contact = {
   heading: "Let's talk about the process taking too much time.",
   body:
-    "The first conversation is about the task, report or process your team repeats often, the tools involved and whether a dashboard or automation could save time.",
+    "The first conversation is about the task, report or process your team repeats often, the tools involved and whether a Branded AI Dashboard could help.",
 };
 
 export const footerLinks = [

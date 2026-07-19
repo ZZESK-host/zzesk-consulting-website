@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="bg-radial-soft border-b border-white/10 bg-ink-950 py-16 sm:py-20 lg:py-24">
         <Container>
           <Reveal>
-            <SectionHeading as="h1" eyebrow="ABOUT" title="Founder-led dashboard and automation building." body={about.intro} />
+            <SectionHeading as="h1" eyebrow="ABOUT" title="Founder-led Branded AI Dashboard building." body={about.intro} />
           </Reveal>
         </Container>
       </section>

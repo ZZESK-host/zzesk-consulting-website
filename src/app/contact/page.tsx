@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact ZZESK Consulting to discuss a dashboard, automation, report, or repeated business task that could be simplified.",
+    "Contact ZZESK Consulting to discuss a Branded AI Dashboard, automation, report, or repeated business task that could be simplified.",
   path: "/contact",
 });
 

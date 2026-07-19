@@ -63,7 +63,7 @@ export default function ServicesPage() {
             <CtaPanel
               heading="Choose the AI dashboard package your business needs."
               body="Start by email, then scope the dashboard, agents, integrations and deployment model that fit your workflow and data requirements."
-              buttonLabel="Start a Conversation"
+              buttonLabel="Get in Touch"
             />
           </Reveal>
         </Container>

@@ -27,7 +27,7 @@ export const site = {
   defaultDescription:
     "ZZESK Consulting builds custom dashboards and automations that cut down repetitive admin and bring business information into one place.",
   tagline: "A branded business dashboard with custom AI agents, integrations and automation built around the customer's workflow.",
-  bookingLabel: "Start a Conversation",
+  bookingLabel: "Get in Touch",
   bookingHref: "/contact",
   social: {
     // Swap this config value if the LinkedIn profile changes; leave it empty to hide the footer link until the real URL is known.

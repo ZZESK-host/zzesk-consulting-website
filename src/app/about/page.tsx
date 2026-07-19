@@ -52,7 +52,7 @@ export default function AboutPage() {
               <p className="mt-2 text-base font-medium text-mist-200">Founder, ZZESK Consulting</p>
               <p className="mt-5 max-w-2xl text-base leading-7 text-mist-300">{about.founderBio}</p>
               <ButtonLink href="/contact" className="mt-7">
-                Start a Conversation
+                Get in Touch
               </ButtonLink>
             </div>
           </Reveal>

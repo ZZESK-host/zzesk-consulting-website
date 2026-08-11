@@ -28,7 +28,7 @@ export function ServicePackageCard({ servicePackage }: ServicePackageCardProps) 
         </div>
         {servicePackage.featured ? (
           <span className="rounded-full border border-accent-300/30 bg-accent-300/10 px-3 py-1 text-xs font-semibold text-accent-300">
-            Flagship
+            Popular starting point
           </span>
         ) : null}
       </div>

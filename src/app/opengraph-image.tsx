@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "ZZESK Consulting, custom AI dashboards and business automation.";
+export const alt = "ZZESK Consulting, practical AI, automation and digital transformation consulting.";
 export const size = {
   width: 1200,
   height: 630,
@@ -43,10 +43,10 @@ export default function OpenGraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 820 }}>
             <div style={{ color: "#9bbcff", fontSize: 22, fontWeight: 700, letterSpacing: 4 }}>
-              CUSTOM AI DASHBOARDS FOR REAL BUSINESSES
+              AI SOLUTIONS CONSULTING FOR REAL BUSINESSES
             </div>
             <div style={{ fontSize: 68, fontWeight: 700, lineHeight: 1.02 }}>
-              Custom dashboards. Connected AI agents. Less repetitive work.
+              Practical AI. Better systems. Less manual work.
             </div>
           </div>
           <div style={{ color: "#cbd5e5", fontSize: 24 }}>zzesk.com</div>

@@ -8,9 +8,9 @@ import { services } from "@/content/site";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "AI Dashboard and Agent Services",
+  title: "AI, Automation and Digital Transformation Services",
   description:
-    "Explore ZZESK Consulting's branded AI dashboards, custom agent teams, integrations, cloud and on-prem deployment options, usage metering, and support.",
+    "Explore practical AI consulting, workplace automation, custom AI tools, website development, systems consulting and tailored digital solutions from ZZESK Consulting.",
   path: "/services",
 });
 
@@ -23,8 +23,8 @@ export default function ServicesPage() {
             <SectionHeading
               as="h1"
               eyebrow="SERVICES"
-              title="Branded AI Dashboards, built around your workflow."
-              body="ZZESK Consulting provides a practical service combining a branded business dashboard, custom AI agents, connected tools, workflow automation and ongoing support."
+              title="Practical solutions for the way your business works."
+              body="The right answer may be AI, automation, better software, a rebuilt website or a simpler process. Every engagement starts with the business problem—not the technology."
             />
           </Reveal>
         </Container>
@@ -61,9 +61,9 @@ export default function ServicesPage() {
         <Container>
           <Reveal>
             <CtaPanel
-              heading="Choose the AI dashboard package your business needs."
-              body="Start by email, then scope the dashboard, agents, integrations and deployment model that fit your workflow and data requirements."
-              buttonLabel="Get in Touch"
+              heading="Not sure which service fits? Start with the problem."
+              body="Book a consultation to discuss what is slow, disconnected or outdated. I will help you identify the most practical next step, without unnecessary complexity."
+              buttonLabel="Book a Consultation"
             />
           </Reveal>
         </Container>

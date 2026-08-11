@@ -152,7 +152,7 @@ export function HeroDashboard() {
       </div>
 
       <p className="rise-item mt-4 text-center text-xs leading-5 text-mist-400" style={riseDelay(1.9)}>
-        Illustrative example of a ZZESK operations dashboard.
+        One example of a practical solution: a custom operations dashboard.
       </p>
     </div>
   );

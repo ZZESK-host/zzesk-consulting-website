@@ -21,7 +21,7 @@ import { home, site } from "@/content/site";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Dashboards and Automation for Small Businesses",
+  title: "AI Solutions Consulting for Modern Businesses",
   path: "/",
 });
 
@@ -87,7 +87,7 @@ export default function HomePage() {
                   {home.hero.eyebrow}
                 </p>
               </Reveal>
-              <HeroHeading text={home.hero.heading} highlight="one clear place." />
+              <HeroHeading text={home.hero.heading} highlight="business works." />
               <Reveal variant="blur" delay={0.45}>
                 <p className="mt-7 max-w-[36rem] text-lg leading-8 text-mist-200 sm:text-xl sm:leading-9">{home.hero.body}</p>
               </Reveal>
@@ -101,8 +101,8 @@ export default function HomePage() {
                   <ButtonLink href={site.bookingHref} className="min-h-12 px-6 text-base">
                     {site.bookingLabel}
                   </ButtonLink>
-                  <ButtonLink href="#case-studies" variant="secondary" className="min-h-12 px-6 text-base">
-                    See What We Build
+                  <ButtonLink href="/services" variant="secondary" className="min-h-12 px-6 text-base">
+                    Explore Services
                   </ButtonLink>
                 </div>
               </Reveal>
@@ -147,7 +147,7 @@ export default function HomePage() {
         <Container>
           <Reveal variant="fade">
             <p className="mb-6 text-center font-mono text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-mist-400">
-              Connects the tools you already use
+              Works with the tools your business already uses
             </p>
             <ToolMarquee />
           </Reveal>

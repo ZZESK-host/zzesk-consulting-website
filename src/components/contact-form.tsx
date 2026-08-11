@@ -44,7 +44,7 @@ function validate(values: FormValues): FormErrors {
     errors.email = "Enter a valid email address.";
   }
   if (!values.processToImprove.trim()) {
-      errors.processToImprove = "Describe what you would like ZZESK Consulting to help improve or automate.";
+      errors.processToImprove = "Tell me about the problem, process or system you would like to improve.";
   }
   if (!values.consentToContact) {
     errors.consentToContact = "Please confirm ZZESK can contact you about this enquiry.";
@@ -287,7 +287,7 @@ export function ContactForm() {
 
       <Field
         id="processToImprove"
-        label="What would you like ZZESK Consulting to help you improve or automate?"
+        label="What problem would you like to solve?"
         required
         error={visibleErrors.processToImprove}
       >

@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Learn about ZZESK Consulting, a founder-led business building practical dashboards, automations, and AI-assisted tools where they save time.",
+    "Learn about ZZESK Consulting's practical, problem-first approach to AI, automation, digital systems and business modernisation.",
   path: "/about",
 });
 
@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="bg-radial-soft border-b border-white/10 bg-ink-950 py-16 sm:py-20 lg:py-24">
         <Container>
           <Reveal>
-            <SectionHeading as="h1" eyebrow="ABOUT" title="Founder-led Branded AI Dashboard building." body={about.intro} />
+            <SectionHeading as="h1" eyebrow="ABOUT" title="Technology should solve a real business problem." body={about.intro} />
           </Reveal>
         </Container>
       </section>
@@ -52,7 +52,7 @@ export default function AboutPage() {
               <p className="mt-2 text-base font-medium text-mist-200">Founder, ZZESK Consulting</p>
               <p className="mt-5 max-w-2xl text-base leading-7 text-mist-300">{about.founderBio}</p>
               <ButtonLink href="/contact" className="mt-7">
-                Get in Touch
+                Discuss a Business Problem
               </ButtonLink>
             </div>
           </Reveal>

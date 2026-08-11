@@ -2,13 +2,13 @@ import { CheckCircle2, Gauge, LayoutDashboard, Workflow } from "lucide-react";
 
 const implementationRows = [
   {
-    label: "Process mapped",
-    detail: "Tools, handoffs, reporting gaps",
+    label: "Operation understood",
+    detail: "People, tools, handoffs and friction",
     icon: Workflow,
   },
   {
-    label: "Dashboard scope defined",
-    detail: "Views, numbers, priorities",
+    label: "Right solution defined",
+    detail: "AI, automation, software or web",
     icon: LayoutDashboard,
   },
   {
@@ -28,9 +28,9 @@ export function FounderImplementationCard() {
       <div className="relative">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-300">Founder-led build</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-300">Founder-led consulting</p>
             <h3 className="mt-3 text-2xl font-semibold leading-tight text-mist-50">
-              Practical decisions stay close to the person building the tool.
+              Advice and delivery stay connected from first conversation to handover.
             </h3>
           </div>
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-cobalt-300/25 bg-cobalt-300/10 text-cobalt-300">
@@ -55,9 +55,9 @@ export function FounderImplementationCard() {
         </div>
 
         <div className="mt-6 rounded-lg border border-accent-300/25 bg-accent-300/10 p-4">
-          <p className="text-sm font-semibold text-mist-50">Direct accountability</p>
+          <p className="text-sm font-semibold text-mist-50">One accountable partner</p>
           <p className="mt-2 text-sm leading-6 text-mist-200">
-            Discovery, build decisions and handover stay focused on saving time and making work easier.
+            Strategy, technical decisions and implementation stay focused on making the business work better.
           </p>
         </div>
       </div>

@@ -208,12 +208,20 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading title={home.process.heading} align="center" />
           </Reveal>
-          <Reveal stagger className="relative mt-14 grid gap-5 md:grid-cols-4">
+          <Reveal variant="fade" className="relative mt-14 hidden md:grid md:grid-cols-4 md:gap-5">
             <div
-              data-no-stagger
-              className="process-connector absolute left-6 top-0 h-full w-px bg-gradient-to-b from-accent-300/55 via-slate-400/[0.22] to-cobalt-300/45 md:left-0 md:right-0 md:top-12 md:mx-auto md:h-px md:w-[calc(100%-12rem)] md:bg-gradient-to-r"
+              className="absolute left-[calc(12.5%-7.5px)] right-[calc(12.5%-7.5px)] top-6 h-px bg-gradient-to-r from-accent-300/20 via-accent-300/65 to-cobalt-300/25"
               aria-hidden="true"
             />
+            {home.process.steps.map((step) => (
+              <div key={step.number} className="relative z-10 flex justify-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-accent-300/45 bg-ink-850 text-sm font-semibold text-accent-300 shadow-[0_0_0_6px_rgba(13,28,41,1),0_0_28px_rgba(45,212,191,0.1)]">
+                  {step.number}
+                </div>
+              </div>
+            ))}
+          </Reveal>
+          <Reveal stagger className="mt-5 grid gap-5 md:grid-cols-4">
             {home.process.steps.map((step) => (
               <ProcessStepCard key={step.number} step={step} />
             ))}

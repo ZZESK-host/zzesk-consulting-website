@@ -445,29 +445,6 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   Process timeline connector draws in when the section reveals
---------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: no-preference) {
-  html.js .process-connector {
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-  }
-
-  @media (min-width: 768px) {
-    html.js .process-connector {
-      transform: scaleX(0);
-      transform-origin: left;
-    }
-  }
-
-  html.js [data-reveal-stagger].is-revealed .process-connector,
-  html.js [data-reveal].is-revealed .process-connector {
-    transform: none;
-  }
-}
-
-/* ---------------------------------------------------------------------------
    Page transition
 --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: no-preference) {

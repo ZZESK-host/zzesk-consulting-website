@@ -9,10 +9,10 @@ export function ProcessStepCard({ step }: ProcessStepCardProps) {
 
   return (
     <article className="spotlight-card relative h-full rounded-lg border border-slate-400/[0.16] bg-ink-800/62 p-6 shadow-edge transition duration-200 hover:border-accent-300/35 hover:bg-ink-800">
-      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-accent-300/35 bg-ink-950 text-sm font-semibold text-accent-300 shadow-[0_0_32px_rgba(45,212,191,0.11)]">
+      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-accent-300/35 bg-ink-950 text-sm font-semibold text-accent-300 shadow-[0_0_32px_rgba(45,212,191,0.11)] md:hidden">
         {step.number}
       </div>
-      <div className="mt-6 flex items-center gap-3">
+      <div className="mt-6 flex items-center gap-3 md:mt-0">
         <Icon className="h-5 w-5 text-accent-300" aria-hidden="true" />
         <h3 className="text-xl font-semibold text-mist-50">{step.title}</h3>
       </div>

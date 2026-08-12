@@ -39,25 +39,6 @@ export const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-export type CaseStudy = {
-  projectName: string;
-  categories: string[];
-  imageSrc: string;
-  imageAlt: string;
-  replacementPath?: string;
-  logoLabel?: string;
-  problem: string;
-  solution: string;
-  before: string;
-  after: string;
-  processImprovement: string;
-  result: string;
-  results: string[];
-  testimonial?: string;
-  caseStudyHref?: string;
-  isPlaceholder?: boolean;
-};
-
 export type ServicePackage = {
   title: string;
   subtitle: string;
@@ -144,53 +125,6 @@ export const home = {
       },
     ],
     cta: "Discuss a business problem",
-  },
-  proof: {
-    heading: "Solutions built around real business problems",
-    body:
-      "Every engagement starts with the operation as it exists today. The result may be an automation, an AI-powered tool, a connected workflow, a dashboard or a better digital experience.",
-    categories: [
-      "Professional Services",
-      "Trades and Field Services",
-      "Healthcare and Allied Health",
-      "Growing SMEs",
-      "Internal Operations",
-    ],
-    caseStudies: [
-      {
-        projectName: "TechDrivePlay Automation Operator Desk",
-        categories: ["Growing SMEs", "Internal Operations"],
-        imageSrc: "/images/case-studies/techdriveplay-operator-desk.png",
-        imageAlt: "TechDrivePlay automation operator desk showing installed bots, statuses and operating groups",
-        logoLabel: "TechDrivePlay",
-        problem:
-          "TechDrivePlay needed a clearer way to review, launch and monitor multiple automation bots that supported publishing, research and approval workflows.",
-        solution:
-          "An operator desk that grouped always-running and task-based bots, exposed live statuses and made each workflow easier to review from one place.",
-        before: "Bot activity, queue status and review steps were harder to see across separate scripts and workflows.",
-        after: "Nine connected bots could be reviewed from one operating desk with status, queue and task information visible at a glance.",
-        processImprovement:
-          "The publishing operation became easier to supervise because review, approval and automation status were collected in one practical interface.",
-        result: "9 bots organised across 2 operating groups",
-        results: ["9 connected bots", "Always-running and task-based workflows", "Central review and approval visibility"],
-      },
-      {
-        projectName: "TechDrivePlay PressCore Operator",
-        categories: ["Professional Services", "Growing SMEs", "Internal Operations"],
-        imageSrc: "/images/case-studies/techdriveplay-presscore-operator.png",
-        imageAlt: "PressCore Operator dashboard showing workflow routing, bot status and recent automation work",
-        logoLabel: "TechDrivePlay",
-        problem: "The publishing system needed an orchestration layer that could coordinate specialist bots, track recent work and accept operator instructions.",
-        solution:
-          "PressCore Operator gave the team one place to coordinate connected bots, provide direct instructions, review task history and apply operating rules.",
-        before: "Automation runs needed more manual context switching between bot actions, queues and task history.",
-        after: "The operator could talk to PressCore, review recent work and coordinate the connected bot network from a single screen.",
-        processImprovement:
-          "Research, outreach and publishing actions became easier to coordinate because the system kept operator context and task state visible.",
-        result: "9 bots and 76 actions connected through PressCore",
-        results: ["Live workflow routing view", "Operator chat and task history", "Approval controls for important actions"],
-      },
-    ] satisfies CaseStudy[],
   },
   packages: {
     heading: "Start with the outcome your business needs.",

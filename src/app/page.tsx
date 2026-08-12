@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { Card } from "@/components/card";
-import { CaseStudyTabs } from "@/components/case-study-tabs";
 import { Container } from "@/components/container";
 import { CtaPanel } from "@/components/cta-panel";
 import { FounderImplementationCard } from "@/components/founder-implementation-card";
@@ -174,17 +173,6 @@ export default function HomePage() {
                 {home.problems.cta}
               </ButtonLink>
             </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      <section id="case-studies" className="scroll-mt-24 border-b border-slate-400/[0.16] bg-ink-950 py-20 sm:py-28">
-        <Container>
-          <Reveal>
-            <SectionHeading title={home.proof.heading} body={home.proof.body} className="max-w-[56rem]" />
-          </Reveal>
-          <Reveal delay={0.08}>
-            <CaseStudyTabs categories={home.proof.categories} studies={home.proof.caseStudies} />
           </Reveal>
         </Container>
       </section>

@@ -1,7 +1,5 @@
 import {
   BarChart3,
-  Briefcase,
-  Building2,
   CheckCircle2,
   ClipboardCheck,
   FileSearch,
@@ -60,17 +58,6 @@ export type CaseStudy = {
   isPlaceholder?: boolean;
 };
 
-export type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-  company: string;
-  logoLabel?: string;
-  portraitSrc?: string;
-  portraitAlt?: string;
-  isPlaceholder?: boolean;
-};
-
 export type ServicePackage = {
   title: string;
   subtitle: string;
@@ -80,13 +67,6 @@ export type ServicePackage = {
   href: string;
   icon: LucideIcon;
   featured?: boolean;
-};
-
-export type RoiExample = {
-  hoursPerWeek: number;
-  hoursPerYear: number;
-  hourlyRate: number;
-  annualValue: number;
 };
 
 export type ProcessStep = {
@@ -165,28 +145,6 @@ export const home = {
     ],
     cta: "Discuss a business problem",
   },
-  customers: {
-    heading: "For businesses ready to work smarter—not add more software",
-    body:
-      "ZZESK Consulting works with small and medium-sized businesses that want to improve how work gets done. The goal is a simpler operation, better customer experience and technology that earns its place.",
-    cards: [
-      {
-        title: "Established SMEs",
-        body: "Modernise processes and systems that worked when the business was smaller but now create unnecessary friction.",
-        icon: Building2,
-      },
-      {
-        title: "Professional Service Teams",
-        body: "Improve client intake, document handling, reporting, follow-up and the internal work behind service delivery.",
-        icon: Briefcase,
-      },
-      {
-        title: "Operationally Complex Businesses",
-        body: "Connect tools, automate handoffs and give staff a clearer way to manage information, tasks and decisions.",
-        icon: Users,
-      },
-    ],
-  },
   proof: {
     heading: "Solutions built around real business problems",
     body:
@@ -232,49 +190,7 @@ export const home = {
         result: "9 bots and 76 actions connected through PressCore",
         results: ["Live workflow routing view", "Operator chat and task history", "Approval controls for important actions"],
       },
-      {
-        projectName: "Reporting Dashboard",
-        categories: ["Professional Services", "Healthcare and Allied Health", "Growing SMEs", "Internal Operations"],
-        imageSrc: "/images/case-studies/reporting-dashboard-placeholder.jpg",
-        imageAlt: "Placeholder screenshot for a reporting dashboard case study",
-        replacementPath: "public/images/case-studies/reporting-dashboard-placeholder.jpg",
-        problem: "Reports took too long to prepare because important information lived across spreadsheets and separate tools.",
-        solution:
-          "A custom reporting dashboard that brought the key numbers and updates into one simple view.",
-        before: "Managers had to pull information from separate files before they could understand the latest status.",
-        after: "The dashboard showed the latest information in one place, making updates faster to prepare.",
-        processImprovement:
-          "Managers could review jobs, clients, tasks or priorities without rebuilding reports from scratch.",
-        result: "[Insert approved time saving, cost saving or improvement metric]",
-        results: ["One place to review key information", "[Insert approved reporting speed improvement]", "Clearer visibility across key updates"],
-        isPlaceholder: true,
-      },
     ] satisfies CaseStudy[],
-  },
-  testimonials: {
-    heading: "The standard for every engagement",
-    cards: [
-      {
-        quote:
-          "The best solution is not the one with the most AI. It is the one that makes the business easier to run.",
-        name: "Zachary Skinner",
-        role: "Founder",
-        company: "ZZESK Consulting",
-        logoLabel: "Problem first",
-        portraitSrc: "/images/founder/zachary-skinner-founder.png",
-        portraitAlt: "Zachary Skinner, founder of ZZESK Consulting",
-      },
-      {
-        quote:
-          "Good technology should remove complexity from the team, not give them another system to fight with.",
-        name: "Zachary Skinner",
-        role: "Founder",
-        company: "ZZESK Consulting",
-        logoLabel: "Practical by design",
-        portraitSrc: "/images/founder/zachary-skinner-founder.png",
-        portraitAlt: "Zachary Skinner, founder of ZZESK Consulting",
-      },
-    ] satisfies Testimonial[],
   },
   packages: {
     heading: "Start with the outcome your business needs.",
@@ -356,11 +272,6 @@ export const home = {
     heading: "What could a better workflow save your business?",
     body:
       "Small improvements to repeated work add up quickly. A task that saves only a few hours each week can recover hundreds of hours over a year.",
-    examples: [
-      { hoursPerWeek: 5, hoursPerYear: 260, hourlyRate: 50, annualValue: 13000 },
-      { hoursPerWeek: 10, hoursPerYear: 520, hourlyRate: 50, annualValue: 26000 },
-      { hoursPerWeek: 20, hoursPerYear: 1040, hourlyRate: 50, annualValue: 52000 },
-    ] satisfies RoiExample[],
   },
   process: {
     heading: "From operational problem to practical solution.",

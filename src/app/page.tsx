@@ -12,10 +12,8 @@ import { NeuralNetworkBackground } from "@/components/neural-network-background"
 import { ProcessStepCard } from "@/components/process-step-card";
 import { Reveal } from "@/components/reveal";
 import { RoiCalculator } from "@/components/roi-calculator";
-import { RoiCard } from "@/components/roi-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ServicePackageCard } from "@/components/service-package-card";
-import { TestimonialCard } from "@/components/testimonial-card";
 import { ToolMarquee } from "@/components/tool-marquee";
 import { home, site } from "@/content/site";
 import { createPageMetadata } from "@/lib/metadata";
@@ -180,25 +178,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="border-b border-slate-400/[0.16] bg-ink-900 py-20 sm:py-24">
-        <Container>
-          <Reveal>
-            <SectionHeading title={home.customers.heading} body={home.customers.body} className="max-w-[54rem]" />
-          </Reveal>
-          <Reveal stagger className="mt-11 grid gap-5 md:grid-cols-3">
-            {home.customers.cards.map((card) => (
-              <Card key={card.title} className="h-full min-h-[15rem]">
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-accent-300/30 bg-accent-300/10 text-accent-300">
-                  <card.icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-semibold text-mist-50">{card.title}</h3>
-                <p className="mt-4 text-[1rem] leading-7 text-mist-200">{card.body}</p>
-              </Card>
-            ))}
-          </Reveal>
-        </Container>
-      </section>
-
       <section id="case-studies" className="scroll-mt-24 border-b border-slate-400/[0.16] bg-ink-950 py-20 sm:py-28">
         <Container>
           <Reveal>
@@ -206,19 +185,6 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.08}>
             <CaseStudyTabs categories={home.proof.categories} studies={home.proof.caseStudies} />
-          </Reveal>
-        </Container>
-      </section>
-
-      <section className="border-b border-slate-400/[0.16] bg-ink-900 py-20 sm:py-24">
-        <Container>
-          <Reveal>
-            <SectionHeading title={home.testimonials.heading} className="max-w-[46rem]" />
-          </Reveal>
-          <Reveal stagger className="mt-11 grid gap-5 lg:grid-cols-2">
-            {home.testimonials.cards.map((testimonial, index) => (
-              <TestimonialCard key={`${testimonial.company}-${index}`} testimonial={testimonial} />
-            ))}
           </Reveal>
         </Container>
       </section>
@@ -241,13 +207,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading title={home.roi.heading} body={home.roi.body} className="max-w-[54rem]" />
           </Reveal>
-          <Reveal stagger className="mt-12 grid gap-5 lg:grid-cols-3">
-            {home.roi.examples.map((example) => (
-              <RoiCard key={example.hoursPerWeek} example={example} />
-            ))}
-          </Reveal>
-          <Reveal delay={0.12}>
-            <div className="mt-8">
+          <Reveal delay={0.08}>
+            <div className="mt-12">
               <RoiCalculator />
             </div>
           </Reveal>

@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "AI, Automation and Digital Transformation Services",
   description:
-    "Explore practical AI consulting, workplace automation, custom AI tools, website development, systems consulting and tailored digital solutions from ZZESK Consulting.",
+    "Explore seven practical AI service areas—from strategy, governance and generative AI through automation, data, implementation and workforce capability.",
   path: "/services",
 });
 
@@ -23,8 +23,8 @@ export default function ServicesPage() {
             <SectionHeading
               as="h1"
               eyebrow="SERVICES"
-              title="Practical solutions for the way your business works."
-              body="The right answer may be AI, automation, better software, a rebuilt website or a simpler process. Every engagement starts with the business problem—not the technology."
+              title="Seven ways we help businesses put AI to work."
+              body="From responsible AI strategy to implementation and workforce adoption, choose the capability that best fits the outcome you need. Every engagement starts with your business problem—not a predetermined tool."
             />
           </Reveal>
         </Container>
@@ -35,8 +35,11 @@ export default function ServicesPage() {
           <Reveal stagger className="grid gap-4 lg:grid-cols-2">
             {services.map((service) => (
               <Card key={service.title} className="h-full">
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-accent-300/20 bg-accent-400/10 text-accent-300">
-                  <service.icon className="h-5 w-5" aria-hidden="true" />
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-accent-300/20 bg-accent-400/10 text-accent-300">
+                    <service.icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <span className="font-mono text-sm font-semibold tracking-[0.16em] text-accent-300">{service.number}</span>
                 </div>
                 <h2 className="text-xl font-semibold text-mist-50">{service.title}</h2>
                 <p className="mt-3 text-sm leading-6 text-mist-300">{service.description}</p>

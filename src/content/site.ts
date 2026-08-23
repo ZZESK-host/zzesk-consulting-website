@@ -1,11 +1,18 @@
 import {
   BarChart3,
+  Bot,
+  BriefcaseBusiness,
+  Cable,
   CheckCircle2,
   ClipboardCheck,
+  Database,
   FileSearch,
   Gauge,
+  GraduationCap,
   LayoutDashboard,
   Link2,
+  ShieldCheck,
+  Sparkles,
   UserCheck,
   Users,
   Workflow,
@@ -255,6 +262,7 @@ export const home = {
 };
 
 export type Service = {
+  number: string;
   title: string;
   description: string;
   goodFit: string[];
@@ -264,93 +272,108 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    title: "AI Consulting",
+    number: "01",
+    title: "AI Strategy, Advisory & Governance",
     description:
-      "Identify where AI can genuinely improve the business, reduce repetitive work or support better decisions. The advice is grounded in your operation, existing systems and team—not in a predetermined product.",
+      "Set a clear, responsible direction for AI. We help you identify priorities, assess maturity and risk, establish governance and make confident procurement and policy decisions.",
     goodFitLabel: "Useful when you need to",
     goodFit: [
-      "Understand where AI could create value",
-      "Prioritise realistic opportunities",
-      "Assess feasibility, risk and effort",
-      "Create a practical adoption roadmap",
+      "Create an AI strategy and practical roadmap",
+      "Assess AI maturity, risk and readiness",
+      "Develop responsible AI governance and policy",
+      "Get independent AI procurement advice",
     ],
-    icon: FileSearch,
+    icon: ShieldCheck,
   },
   {
-    title: "Workplace Automation",
+    number: "02",
+    title: "Generative AI & AI Productivity",
     description:
-      "Design and implement automated workflows for the repeated tasks that absorb staff time, create delays or introduce avoidable errors across everyday operations.",
-    goodFitLabel: "Common opportunities",
-    goodFit: [
-      "Administrative tasks and data entry",
-      "Customer enquiries and follow-up",
-      "Document and information handling",
-      "Reporting and internal notifications",
-      "Approvals and handoffs between teams",
-    ],
-    icon: Workflow,
-  },
-  {
-    title: "AI Agents & Internal Tools",
-    description:
-      "Build custom AI-powered assistants, dashboards and internal tools around the way your team actually works, with the right data, permissions and human oversight.",
+      "Give teams practical, secure ways to create, find and work with information using copilots, ChatGPT and tailored large-language-model solutions.",
     goodFitLabel: "Solutions may include",
     goodFit: [
-      "Role-specific AI assistants",
-      "Internal search and knowledge tools",
-      "Operations dashboards",
-      "Document processing tools",
-      "Custom interfaces for repeated work",
+      "Copilots and AI assistants",
+      "ChatGPT and LLM solutions",
+      "Knowledge management and search",
+      "Content and productivity tools",
     ],
-    icon: LayoutDashboard,
+    icon: Sparkles,
   },
   {
-    title: "Website Redesign & Development",
+    number: "03",
+    title: "AI Automation & Intelligent Agents",
     description:
-      "Replace an outdated website with a faster, cleaner and more professional digital experience, built using modern technology such as Next.js and focused on usability, SEO and conversions.",
-    goodFitLabel: "A redesign can improve",
+      "Turn repetitive, multi-step work into reliable intelligent workflows that combine automation, AI decision support and human review where it matters.",
+    goodFitLabel: "Solutions may include",
     goodFit: [
-      "Credibility and visual presentation",
-      "Mobile usability and accessibility",
-      "Page speed and technical performance",
-      "Search visibility and content structure",
-      "Enquiries and customer conversion paths",
+      "Workflow automation and AI agents",
+      "RPA combined with AI",
+      "Document processing and extraction",
+      "Business-process automation",
     ],
-    icon: Wrench,
+    icon: Bot,
   },
   {
-    title: "Systems & Workflow Consulting",
+    number: "04",
+    title: "AI Data, Analytics & Business Intelligence",
     description:
-      "Review the software, processes and information flows behind the business, then simplify the setup, remove duplicated work and connect the systems that should work together.",
-    goodFitLabel: "A review can uncover",
+      "Make better decisions with data that is useful, connected and understandable—from dashboards and forecasting to machine learning and computer vision.",
+    goodFitLabel: "Capabilities include",
     goodFit: [
-      "Disconnected tools and duplicated data",
-      "Manual handoffs and process bottlenecks",
-      "Software that no longer fits the business",
-      "Reporting and visibility gaps",
-      "Opportunities to simplify the workflow",
+      "Data analytics and business intelligence",
+      "Predictive analytics and forecasting",
+      "Machine learning and computer vision",
+      "Data platforms and reporting dashboards",
     ],
-    icon: Link2,
+    icon: Database,
   },
   {
-    title: "Custom AI Solutions",
+    number: "05",
+    title: "AI Business Solutions & Applications",
     description:
-      "Develop a tailored solution when an important operational problem cannot be solved effectively with off-the-shelf software. The scope can combine AI, automation, integrations and custom development.",
-    goodFitLabel: "Good fit for",
+      "Apply AI to the business functions where it can make a measurable difference, with solutions shaped around your industry, customers and operations.",
+    goodFitLabel: "Applications across",
     goodFit: [
-      "Unique or specialised workflows",
-      "Complex information handling",
-      "Industry-specific operational needs",
-      "Private or customer-controlled deployments",
-      "Solutions spanning several systems",
+      "Customer service, finance and HR",
+      "Marketing and sales operations",
+      "Compliance, planning and reporting",
+      "Operational and industry-specific workflows",
     ],
-    icon: Gauge,
+    icon: BriefcaseBusiness,
+  },
+  {
+    number: "06",
+    title: "AI Implementation, Integration & Managed Services",
+    description:
+      "Move from an AI idea to a dependable working solution, integrated with the systems you already use and supported after launch.",
+    goodFitLabel: "Delivery includes",
+    goodFit: [
+      "Custom development and system integration",
+      "Deployment and migration",
+      "Support and managed AI services",
+      "Secure, maintainable technical delivery",
+    ],
+    icon: Cable,
+  },
+  {
+    number: "07",
+    title: "AI Training, Capability & Change",
+    description:
+      "Help your people use AI with confidence and purpose, building the practical capability and operating model needed for lasting adoption.",
+    goodFitLabel: "Support for your team",
+    goodFit: [
+      "AI literacy and workforce training",
+      "Leadership education and decision support",
+      "Adoption and change management",
+      "AI operating models and ways of working",
+    ],
+    icon: GraduationCap,
   },
 ];
 
 export const about = {
   intro:
-    "ZZESK Consulting helps businesses improve how they operate through practical AI, automation, better digital systems and modern web technology.",
+    "ZZESK Consulting helps businesses turn AI from an emerging opportunity into practical, responsible improvements across strategy, productivity, operations, data and capability.",
   implementationHeading: "A practical approach to modernisation",
   principles: [
     {

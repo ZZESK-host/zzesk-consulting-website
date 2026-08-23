@@ -14,7 +14,7 @@ import { RoiCalculator } from "@/components/roi-calculator";
 import { SectionHeading } from "@/components/section-heading";
 import { ServicePackageCard } from "@/components/service-package-card";
 import { ToolMarquee } from "@/components/tool-marquee";
-import { home, site } from "@/content/site";
+import { home, services, site } from "@/content/site";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -180,7 +180,39 @@ export default function HomePage() {
       <section id="services" className="scroll-mt-24 border-b border-slate-400/[0.16] bg-ink-850 py-20 sm:py-28">
         <Container>
           <Reveal>
-            <SectionHeading title={home.packages.heading} body={home.packages.body} className="max-w-[54rem]" />
+            <SectionHeading
+              eyebrow="WHAT WE OFFER"
+              title="End-to-end AI services for your business."
+              body="We can support your organisation from the first AI decision through to implementation, adoption and ongoing improvement."
+              className="max-w-[54rem]"
+            />
+          </Reveal>
+          <Reveal stagger className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {services.map((service) => (
+              <Card key={service.title} className="flex min-h-52 h-full flex-col p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <service.icon className="h-5 w-5 text-accent-300" aria-hidden="true" />
+                  <span className="font-mono text-sm font-semibold tracking-[0.16em] text-accent-300">{service.number}</span>
+                </div>
+                <h2 className="mt-7 text-lg font-semibold leading-6 text-mist-50">{service.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-mist-300">{service.description}</p>
+              </Card>
+            ))}
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="mt-9">
+              <ButtonLink href="/services" variant="secondary" className="min-h-12 px-6 text-base">
+                Explore All AI Services
+              </ButtonLink>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-b border-slate-400/[0.16] bg-ink-950 py-20 sm:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading eyebrow="FOCUSED STARTING POINTS" title={home.packages.heading} body={home.packages.body} className="max-w-[54rem]" />
           </Reveal>
           <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {home.packages.cards.map((servicePackage) => (

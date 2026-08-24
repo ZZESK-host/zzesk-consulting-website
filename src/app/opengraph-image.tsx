@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "ZZESK Consulting, practical AI, automation and digital transformation consulting.";
+export const alt = "ZZESK Consulting, practical AI strategy, delivery and adoption for Australian SMEs.";
 export const size = {
   width: 1200,
   height: 630,
@@ -43,10 +43,10 @@ export default function OpenGraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 820 }}>
             <div style={{ color: "#9bbcff", fontSize: 22, fontWeight: 700, letterSpacing: 4 }}>
-              AI SOLUTIONS CONSULTING FOR REAL BUSINESSES
+              PRACTICAL AI FOR AUSTRALIAN SMEs
             </div>
             <div style={{ fontSize: 68, fontWeight: 700, lineHeight: 1.02 }}>
-              Practical AI. Better systems. Less manual work.
+              From AI strategy to delivery and adoption.
             </div>
           </div>
           <div style={{ color: "#cbd5e5", fontSize: 24 }}>zzesk.com</div>

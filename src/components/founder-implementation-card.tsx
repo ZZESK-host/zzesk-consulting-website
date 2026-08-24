@@ -2,18 +2,18 @@ import { CheckCircle2, Gauge, LayoutDashboard, Workflow } from "lucide-react";
 
 const implementationRows = [
   {
-    label: "Operation understood",
-    detail: "People, tools, handoffs and friction",
+    label: "Business context understood",
+    detail: "Priorities, people, systems and responsibilities",
     icon: Workflow,
   },
   {
     label: "Right solution defined",
-    detail: "AI, automation, software or web",
+    detail: "Strategy, AI, automation, data and change",
     icon: LayoutDashboard,
   },
   {
-    label: "Handover built in",
-    detail: "Documentation and support",
+    label: "Adoption built in",
+    detail: "Controls, training, documentation and support",
     icon: CheckCircle2,
   },
 ];
@@ -57,7 +57,7 @@ export function FounderImplementationCard() {
         <div className="mt-6 rounded-lg border border-accent-300/25 bg-accent-300/10 p-4">
           <p className="text-sm font-semibold text-mist-50">One accountable partner</p>
           <p className="mt-2 text-sm leading-6 text-mist-200">
-            Strategy, technical decisions and implementation stay focused on making the business work better.
+            Strategy, responsible controls, technical delivery and adoption stay connected around the same business outcome.
           </p>
         </div>
       </div>

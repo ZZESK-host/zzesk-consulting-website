@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { AlertCircle } from "lucide-react";
+import type { ServiceInterest } from "@/content/services";
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,7 @@ type FormValues = {
   businessName: string;
   email: string;
   phone: string;
+  serviceInterest: string;
   processToImprove: string;
   consentToContact: boolean;
 };
@@ -24,11 +26,12 @@ type SubmissionState = "idle" | "sending" | "success" | "error";
 const source = "website-contact-form";
 const formVersion = "lead-intake-v2";
 
-const initialValues: FormValues = {
+const baseInitialValues: FormValues = {
   name: "",
   businessName: "",
   email: "",
   phone: "",
+  serviceInterest: "",
   processToImprove: "",
   consentToContact: false,
 };
@@ -44,7 +47,7 @@ function validate(values: FormValues): FormErrors {
     errors.email = "Enter a valid email address.";
   }
   if (!values.processToImprove.trim()) {
-      errors.processToImprove = "Tell me about the problem, process or system you would like to improve.";
+      errors.processToImprove = "Tell us about the priority, problem or process you would like to improve.";
   }
   if (!values.consentToContact) {
     errors.consentToContact = "Please confirm ZZESK can contact you about this enquiry.";
@@ -126,14 +129,24 @@ function buildSubmission(values: FormValues) {
     businessName: values.businessName,
     email: values.email,
     phone: values.phone,
+    serviceInterest: values.serviceInterest,
     processToImprove: values.processToImprove,
     consentToContact: values.consentToContact,
     utm: getUtmParams(),
   };
 }
 
-export function ContactForm() {
-  const [values, setValues] = useState<FormValues>(initialValues);
+type ContactFormProps = {
+  initialServiceInterest?: ServiceInterest | "";
+  serviceOptions: ReadonlyArray<{ value: string; label: string }>;
+};
+
+export function ContactForm({ initialServiceInterest = "", serviceOptions = [] }: ContactFormProps) {
+  const initialValues = useMemo<FormValues>(
+    () => ({ ...baseInitialValues, serviceInterest: initialServiceInterest }),
+    [initialServiceInterest],
+  );
+  const [values, setValues] = useState<FormValues>(() => initialValues);
   const [touched, setTouched] = useState<TouchedFields>({});
   const [submitted, setSubmitted] = useState(false);
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
@@ -214,7 +227,7 @@ export function ContactForm() {
       setTouched({});
       setSubmitted(false);
       setSubmissionState("success");
-      setSubmissionMessage(result?.message || "Thanks, your enquiry has been sent. I will reply as soon as possible.");
+        setSubmissionMessage(result?.message || "Thanks, your enquiry has been sent. We will reply as soon as possible.");
     } catch {
       setSubmissionState("error");
       setSubmissionMessage("Your enquiry could not be sent.");
@@ -284,6 +297,24 @@ export function ContactForm() {
           />
         </Field>
       </div>
+
+      <Field id="serviceInterest" label="Service of interest, optional" error={visibleErrors.serviceInterest}>
+        <select
+          id="serviceInterest"
+          name="serviceInterest"
+          value={values.serviceInterest}
+          onChange={(event) => updateValue("serviceInterest", event.target.value)}
+          onBlur={() => markTouched("serviceInterest")}
+          className={inputClass("serviceInterest")}
+          aria-invalid={Boolean(visibleErrors.serviceInterest)}
+          aria-describedby={describedBy("serviceInterest")}
+        >
+          <option value="">Select a service</option>
+          {serviceOptions.map((option) => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
+        </select>
+      </Field>
 
       <Field
         id="processToImprove"

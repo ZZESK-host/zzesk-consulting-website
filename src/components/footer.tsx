@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { services } from "@/content/services";
 import { footerLinks, site } from "@/content/site";
 import { Container } from "@/components/container";
 import { Wordmark } from "@/components/wordmark";
@@ -8,7 +9,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-slate-400/[0.16] bg-ink-950">
-      <Container className="grid gap-12 py-12 md:grid-cols-[1.2fr_1fr_1fr] md:py-16">
+      <Container className="grid gap-12 py-12 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.75fr_1.4fr_0.8fr] lg:py-16">
         <div>
           <Wordmark />
           <p className="mt-4 max-w-sm text-[0.95rem] leading-7 text-mist-200">{site.tagline}</p>
@@ -25,6 +26,25 @@ export function Footer() {
               {link.label}
             </Link>
           ))}
+        </nav>
+
+        <nav aria-label="AI services" className="grid content-start gap-2.5 text-[0.9rem]">
+          <p className="font-medium text-mist-50">AI Services</p>
+          {services.map((service) => (
+            <Link
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              className="w-fit rounded text-mist-200 transition hover:text-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
+            >
+              {service.shortTitle}
+            </Link>
+          ))}
+          <Link
+            href="/contact?service=website-modernisation"
+            className="mt-1 w-fit rounded text-cobalt-300 transition hover:text-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
+          >
+            Website Modernisation
+          </Link>
         </nav>
 
         <div className="grid content-start gap-2.5 text-[0.95rem] text-mist-200">

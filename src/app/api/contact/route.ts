@@ -1,6 +1,7 @@
 import { createHmac } from "node:crypto";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { isServiceInterest } from "@/content/services";
 import { site } from "@/content/site";
 
 export const runtime = "nodejs";
@@ -16,6 +17,7 @@ type ContactPayload = {
   businessName?: unknown;
   email?: unknown;
   phone?: unknown;
+  serviceInterest?: unknown;
   processToImprove?: unknown;
   consentToContact?: unknown;
   utm?: unknown;
@@ -32,6 +34,7 @@ type EnquiryPayload = {
   businessName: string;
   email: string;
   phone: string;
+  serviceInterest: string;
   processToImprove: string;
   consentToContact: boolean;
   utm: Record<string, string>;
@@ -62,6 +65,11 @@ function clean(value: unknown, maxLength = 3000) {
 
 function cleanBoolean(value: unknown) {
   return value === true || value === "true" || value === "on";
+}
+
+function cleanServiceInterest(value: unknown) {
+  const candidate = clean(value, 120);
+  return candidate && isServiceInterest(candidate) ? candidate : "";
 }
 
 function cleanUtm(value: unknown) {
@@ -112,6 +120,7 @@ function normalisePayload(payload: ContactPayload): EnquiryPayload {
     businessName: clean(payload.businessName, 200),
     email: clean(payload.email, 320).toLowerCase(),
     phone: clean(payload.phone, 80),
+    serviceInterest: cleanServiceInterest(payload.serviceInterest),
     processToImprove: clean(payload.processToImprove),
     consentToContact: cleanBoolean(payload.consentToContact),
     utm: cleanUtm(payload.utm),
@@ -271,6 +280,7 @@ async function sendNotificationEmail(payload: EnquiryPayload): Promise<EmailResu
     ["Business name", payload.businessName],
     ["Email", payload.email],
     ["Phone", payload.phone],
+    ["Service interest", payload.serviceInterest],
     ["Process to improve", payload.processToImprove],
     ["Consent to contact", payload.consentToContact ? "Yes" : "No"],
     ["Page URL", payload.pageUrl],
@@ -346,7 +356,7 @@ export async function POST(request: Request) {
       ok: true,
       enquiryId: payload.enquiryId,
       delivery: "command-centre",
-      message: "Thanks, your enquiry has been sent. I will reply as soon as possible.",
+      message: "Thanks, your enquiry has been sent. We will reply as soon as possible.",
     });
   }
 

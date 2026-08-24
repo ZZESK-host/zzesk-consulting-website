@@ -1,16 +1,11 @@
 import {
   BarChart3,
-  Bot,
-  BriefcaseBusiness,
-  Cable,
+  BrainCircuit,
   CheckCircle2,
   ClipboardCheck,
-  Database,
   FileSearch,
-  Gauge,
-  GraduationCap,
   LayoutDashboard,
-  Link2,
+  Network,
   ShieldCheck,
   Sparkles,
   UserCheck,
@@ -19,6 +14,7 @@ import {
   Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { services } from "@/content/services";
 
 export const site = {
   businessName: "ZZESK Consulting",
@@ -27,10 +23,10 @@ export const site = {
   url: "https://zzesk.com",
   email: "zack@zzesk.com",
   founder: "Zachary Skinner",
-  defaultTitle: "ZZESK Consulting | AI Solutions Consultant",
+  defaultTitle: "ZZESK Consulting | Practical AI Consulting for Australian SMEs",
   defaultDescription:
-    "Practical AI, automation and digital transformation consulting for businesses ready to reduce manual work, improve systems and modernise how they operate.",
-  tagline: "Practical AI, automation, custom tools and modern websites designed around how your business actually works.",
+    "Practical AI strategy, implementation, automation, data and workforce adoption for Australian SMEs ready to put AI to work responsibly.",
+  tagline: "Practical AI advice and delivery—from strategy and governance through implementation, integration and adoption.",
   bookingLabel: "Book a Consultation",
   bookingHref: "/contact",
   social: {
@@ -66,72 +62,71 @@ export type ProcessStep = {
 
 export const home = {
   hero: {
-    eyebrow: "AI, AUTOMATION & DIGITAL SYSTEMS",
-    heading: "Modernise how your business works.",
+    eyebrow: "PRACTICAL AI FOR AUSTRALIAN SMEs",
+    heading: "Put AI to work across your business.",
     body:
-      "Practical AI, automation and digital systems designed around the way your business actually operates.",
+      "Strategy, implementation and adoption support designed around your goals, people, systems and responsibilities.",
     trust:
-      "Start with the problem, the outdated process or the system that no longer works. The solution is designed around your business—not around a technology trend.",
-    dashboardLine: "Practical solutions. Clear business outcomes. No unnecessary complexity.",
+      "We help you decide where AI fits, build what is useful and introduce it responsibly—from the first priority through to ongoing improvement.",
   },
   outcomes: {
     note: "Results depend on the workflow, team, tools and business setup.",
     cards: [
       {
-        title: "Save time across everyday operations",
-        icon: ClipboardCheck,
+        title: "Set a responsible AI direction",
+        icon: ShieldCheck,
       },
       {
-        title: "Reduce repetitive manual work",
-        icon: Workflow,
+        title: "Improve team productivity",
+        icon: Sparkles,
       },
       {
-        title: "Improve the customer experience",
-        icon: LayoutDashboard,
+        title: "Automate complex business processes",
+        icon: BrainCircuit,
       },
       {
-        title: "Modernise outdated systems",
-        icon: Gauge,
+        title: "Make better decisions with data",
+        icon: BarChart3,
       },
     ],
   },
-  problems: {
-    heading: "Bring me the problem.",
+  useCases: {
+    heading: "Where AI can create practical value.",
     body:
-      "You do not need to know which AI tool to buy or how the solution should be built. Start with what is slow, frustrating, disconnected or holding the business back.",
+      "These representative examples show the kinds of business needs we can explore. The right solution depends on your workflow, information, systems and risk requirements.",
     cards: [
       {
-        title: "“Our team wastes hours doing this manually.”",
-        body: "A repeated administrative task is consuming time that could be spent on customers, delivery or growth.",
+        title: "Customer service",
+        body: "Help staff find approved information, understand enquiries, prepare responses and route work consistently.",
         icon: FileSearch,
       },
       {
-        title: "“Our website is outdated and needs to be rebuilt.”",
-        body: "The current website no longer reflects the quality of the business or makes it easy for customers to take action.",
-        icon: ClipboardCheck,
-      },
-      {
-        title: "“We know AI could help, but do not know where to start.”",
-        body: "You want a practical view of the opportunities, risks and priorities before committing to new technology.",
-        icon: Link2,
-      },
-      {
-        title: "“Our systems do not communicate properly.”",
-        body: "Staff are re-entering information, switching between tools and working around gaps in the current setup.",
-        icon: Gauge,
-      },
-      {
-        title: "“We want to automate this process.”",
-        body: "A predictable workflow still depends on manual handoffs, follow-ups, data entry or report preparation.",
+        title: "Finance",
+        body: "Organise documents, support reporting, identify exceptions and prepare recurring work for review.",
         icon: BarChart3,
       },
       {
-        title: "“We need a custom internal tool or dashboard.”",
-        body: "Off-the-shelf software does not fit the workflow, so the team needs a focused tool built around the real process.",
+        title: "People and HR",
+        body: "Improve access to internal guidance, prepare role-based content and support controlled administrative workflows.",
         icon: Users,
       },
+      {
+        title: "Marketing and sales",
+        body: "Support research, content preparation, customer context and consistent follow-up processes.",
+        icon: Sparkles,
+      },
+      {
+        title: "Operations and planning",
+        body: "Connect information, automate handoffs and provide clearer forecasts or decision support.",
+        icon: Network,
+      },
+      {
+        title: "Compliance and governance",
+        body: "Make approved requirements easier to use while preserving review, traceability and human accountability.",
+        icon: ClipboardCheck,
+      },
     ],
-    cta: "Discuss a business problem",
+    cta: "Discuss an AI priority",
   },
   packages: {
     heading: "Start with the outcome your business needs.",
@@ -152,42 +147,42 @@ export const home = {
           "Clear next-step roadmap",
         ],
         cta: "Request an Assessment",
-        href: "/contact?service=ai-opportunity-assessment",
+        href: "/contact?service=ai-strategy-governance",
         icon: LayoutDashboard,
       },
       {
-        title: "Automation & Systems",
-        subtitle: "Reduce manual work and connect your tools.",
+        title: "Copilot & Productivity Launch",
+        subtitle: "Give your team a useful, responsible starting point.",
         description:
-          "Design and implement reliable workflows for repetitive administration, reporting, customer enquiries, data handling and internal operations.",
+          "Identify practical generative AI use cases, prepare the environment and help a defined group begin using approved tools with confidence.",
         includes: [
-          "Workflow mapping and simplification",
-          "Administrative task automation",
-          "Software and data integrations",
-          "Reporting and notification workflows",
-          "Human approval where it matters",
-          "Testing, handover and support",
+          "Team and workflow discovery",
+          "Use-case prioritisation",
+          "Copilot or ChatGPT guidance",
+          "Prompt and workflow resources",
+          "Responsible-use boundaries",
+          "Practical launch session",
         ],
-        cta: "Discuss an Automation",
-        href: "/contact?service=workplace-automation",
+        cta: "Discuss a Productivity Launch",
+        href: "/contact?service=generative-ai-productivity",
         icon: Users,
         featured: true,
       },
       {
-        title: "AI Tools & Agents",
-        subtitle: "Custom software built around your team.",
+        title: "Automation & Agent Pilot",
+        subtitle: "Prove one valuable workflow with the right controls.",
         description:
-          "Build a focused assistant, internal tool or dashboard that helps staff find information, complete work and make better decisions.",
+          "Design and test a focused AI-assisted workflow before expanding automation across the organisation.",
         includes: [
-          "Custom AI assistants and agents",
-          "Internal dashboards and tools",
-          "Business knowledge search",
-          "Role-based access where required",
-          "Guardrails and activity logging",
-          "Ongoing improvement options",
+          "Current workflow mapping",
+          "Pilot solution design",
+          "AI, automation and integrations",
+          "Human approvals and exceptions",
+          "Testing with real scenarios",
+          "Handover and next-step backlog",
         ],
-        cta: "Discuss a Custom Tool",
-        href: "/contact?service=ai-agents-internal-tools",
+        cta: "Discuss an Agent Pilot",
+        href: "/contact?service=ai-automation-agents",
         icon: Workflow,
       },
       {
@@ -204,177 +199,67 @@ export const home = {
           "Launch support and handover",
         ],
         cta: "Discuss a Website Rebuild",
-        href: "/contact?service=website-redesign-development",
+        href: "/contact?service=website-modernisation",
         icon: Wrench,
       },
     ] satisfies ServicePackage[],
   },
   roi: {
-    heading: "What could a better workflow save your business?",
+    heading: "What could one automated workflow save your business?",
     body:
-      "Small improvements to repeated work add up quickly. A task that saves only a few hours each week can recover hundreds of hours over a year.",
+      "This illustrative calculator applies to suitable automation opportunities only. It is a simple way to explore the potential time value of repeated work—not a forecast or promised result.",
   },
   process: {
-    heading: "From operational problem to practical solution.",
+    heading: "From AI priority to practical adoption.",
     steps: [
       {
         number: "01",
-        title: "Understand the Operation",
-        body: "Look at the people, tools, information and steps involved in how the work gets done today.",
+        title: "Discover",
+        body: "Understand the business priority, people, information, systems and responsibilities involved.",
         icon: FileSearch,
       },
       {
         number: "02",
-        title: "Identify the Opportunity",
-        body: "Find the bottlenecks, repeated work and outdated systems with the strongest case for improvement.",
+        title: "Prioritise",
+        body: "Assess value, feasibility, risk and readiness so effort is directed to the right opportunity.",
         icon: Workflow,
       },
       {
         number: "03",
-        title: "Design and Implement",
-        body: "Create the right solution using AI, automation, software or modern web technology.",
+        title: "Design and Deliver",
+        body: "Create the strategy, solution, controls and working practices needed for the agreed outcome.",
         icon: Wrench,
       },
       {
         number: "04",
-        title: "Measure and Refine",
-        body: "Test the solution in real work, improve what matters and support confident adoption by the team.",
+        title: "Adopt and Improve",
+        body: "Support real use, gather feedback and improve the service through controlled, responsible change.",
         icon: CheckCircle2,
       },
     ] satisfies ProcessStep[],
   },
   founder: {
-    heading: "Practical technology, grounded in how businesses operate",
+    heading: "Founder-led AI advice and delivery, grounded in how SMEs operate",
     imageSrc: "/images/founder/zachary-skinner-founder.png",
     imageAlt: "Portrait of Zachary Skinner, founder of ZZESK Consulting",
     body: [
-      "ZZESK Consulting was founded by Zachary Skinner to help businesses modernise the way they work without turning technology into another source of complexity.",
-      "The focus is not on selling AI for the sake of AI. Each project begins with the real business problem: where time is being lost, where systems are creating friction and where a better process could improve the operation.",
-      "From consulting and workflow automation to custom AI tools and modern websites, every solution is designed to be useful, understandable and maintainable in day-to-day work.",
+      "Zachary Skinner founded ZZESK Consulting to help Australian SMEs make sound AI decisions and turn the right priorities into practical working solutions.",
+      "We combine advisory thinking with hands-on delivery. That keeps strategy, governance, implementation, integration and adoption connected instead of passing the work between disconnected providers.",
+      "Every engagement starts with the business outcome and the people responsible for it. The technology, controls and change approach are then designed to fit the organisation—not a trend or predetermined platform.",
     ],
-    attributes: ["Problem-first advice", "Built around your business", "Technically capable delivery", "Clear handover and support"],
+    attributes: ["Practical SME advice", "Responsible AI by design", "Advisory and technical delivery", "Founder-led accountability"],
   },
   finalCta: {
-    heading: "Tell me what is slowing your business down.",
+    heading: "Discuss where AI could create practical value.",
     body:
-      "Book a consultation to discuss an inefficient process, disconnected system, outdated website or idea for a custom tool. You do not need to arrive with the solution—just the problem worth solving.",
+      "Tell us about the priority, process or decision you are working through. You do not need to arrive with a preferred tool—just enough context to explore a sensible next step.",
   },
 };
-
-export type Service = {
-  number: string;
-  title: string;
-  description: string;
-  goodFit: string[];
-  goodFitLabel?: string;
-  icon: LucideIcon;
-};
-
-export const services: Service[] = [
-  {
-    number: "01",
-    title: "AI Strategy, Advisory & Governance",
-    description:
-      "Set a clear, responsible direction for AI. We help you identify priorities, assess maturity and risk, establish governance and make confident procurement and policy decisions.",
-    goodFitLabel: "Useful when you need to",
-    goodFit: [
-      "Create an AI strategy and practical roadmap",
-      "Assess AI maturity, risk and readiness",
-      "Develop responsible AI governance and policy",
-      "Get independent AI procurement advice",
-    ],
-    icon: ShieldCheck,
-  },
-  {
-    number: "02",
-    title: "Generative AI & AI Productivity",
-    description:
-      "Give teams practical, secure ways to create, find and work with information using copilots, ChatGPT and tailored large-language-model solutions.",
-    goodFitLabel: "Solutions may include",
-    goodFit: [
-      "Copilots and AI assistants",
-      "ChatGPT and LLM solutions",
-      "Knowledge management and search",
-      "Content and productivity tools",
-    ],
-    icon: Sparkles,
-  },
-  {
-    number: "03",
-    title: "AI Automation & Intelligent Agents",
-    description:
-      "Turn repetitive, multi-step work into reliable intelligent workflows that combine automation, AI decision support and human review where it matters.",
-    goodFitLabel: "Solutions may include",
-    goodFit: [
-      "Workflow automation and AI agents",
-      "RPA combined with AI",
-      "Document processing and extraction",
-      "Business-process automation",
-    ],
-    icon: Bot,
-  },
-  {
-    number: "04",
-    title: "AI Data, Analytics & Business Intelligence",
-    description:
-      "Make better decisions with data that is useful, connected and understandable—from dashboards and forecasting to machine learning and computer vision.",
-    goodFitLabel: "Capabilities include",
-    goodFit: [
-      "Data analytics and business intelligence",
-      "Predictive analytics and forecasting",
-      "Machine learning and computer vision",
-      "Data platforms and reporting dashboards",
-    ],
-    icon: Database,
-  },
-  {
-    number: "05",
-    title: "AI Business Solutions & Applications",
-    description:
-      "Apply AI to the business functions where it can make a measurable difference, with solutions shaped around your industry, customers and operations.",
-    goodFitLabel: "Applications across",
-    goodFit: [
-      "Customer service, finance and HR",
-      "Marketing and sales operations",
-      "Compliance, planning and reporting",
-      "Operational and industry-specific workflows",
-    ],
-    icon: BriefcaseBusiness,
-  },
-  {
-    number: "06",
-    title: "AI Implementation, Integration & Managed Services",
-    description:
-      "Move from an AI idea to a dependable working solution, integrated with the systems you already use and supported after launch.",
-    goodFitLabel: "Delivery includes",
-    goodFit: [
-      "Custom development and system integration",
-      "Deployment and migration",
-      "Support and managed AI services",
-      "Secure, maintainable technical delivery",
-    ],
-    icon: Cable,
-  },
-  {
-    number: "07",
-    title: "AI Training, Capability & Change",
-    description:
-      "Help your people use AI with confidence and purpose, building the practical capability and operating model needed for lasting adoption.",
-    goodFitLabel: "Support for your team",
-    goodFit: [
-      "AI literacy and workforce training",
-      "Leadership education and decision support",
-      "Adoption and change management",
-      "AI operating models and ways of working",
-    ],
-    icon: GraduationCap,
-  },
-];
 
 export const about = {
   intro:
-    "ZZESK Consulting helps businesses turn AI from an emerging opportunity into practical, responsible improvements across strategy, productivity, operations, data and capability.",
-  implementationHeading: "A practical approach to modernisation",
+    "ZZESK Consulting helps Australian SMEs turn AI from an emerging opportunity into practical, responsible improvements across strategy, productivity, operations, data and capability.",
+  implementationHeading: "Practical advice connected to practical delivery",
   principles: [
     {
       title: "Start with the problem",
@@ -393,13 +278,29 @@ export const about = {
     },
   ],
   founderBio:
-    "Zachary Skinner founded ZZESK Consulting to help businesses modernise the systems and workflows behind their day-to-day work. His approach combines operational thinking with hands-on technical delivery: understand the problem, identify the right intervention, build it well and make it straightforward for the team to use.",
+    "Zachary Skinner founded ZZESK Consulting to give Australian SMEs one accountable partner across AI advice and delivery. His approach combines operational thinking, responsible decision-making and hands-on technical implementation: understand the outcome, identify the right intervention, build it well and help the team use it confidently.",
+  whoWeHelp:
+    "We work with SME owners, leadership teams and operational managers who need a practical path through AI. Some are deciding where to begin. Others have a defined workflow, data opportunity or tool that needs to be designed, implemented or adopted properly.",
+  capability:
+    "Our work can connect strategy, governance, generative AI, automation, data, custom applications, implementation and workforce change. Website modernisation remains available as a supporting digital service, but AI consulting and delivery is the core of the business.",
+  expectations: [
+    "Plain-language advice tied to business decisions",
+    "Clear scope, responsibilities and review points",
+    "Human oversight and proportionate controls",
+    "Hands-on implementation where required",
+    "Documentation, handover and an understandable next step",
+  ],
+  engagementSteps: [
+    { title: "Start with context", body: "We discuss the priority, current workflow, stakeholders, systems and constraints." },
+    { title: "Define the right engagement", body: "We recommend a focused assessment, pilot, implementation or capability program." },
+    { title: "Work with accountable delivery", body: "Zachary remains involved across the important advisory and implementation decisions." },
+  ],
 };
 
 export const contact = {
-  heading: "Bring me the problem.",
+  heading: "Discuss your AI priorities.",
   body:
-    "Tell me what is taking too long, what is not connecting, what feels outdated or what your team wishes worked differently. The first consultation is about understanding the business problem and deciding whether there is a practical way to solve it.",
+    "Tell us what you are considering, where work is getting stuck or what outcome matters. The first conversation is about understanding the context and deciding whether there is a practical way we can help.",
 };
 
 export const footerLinks = [
@@ -420,12 +321,5 @@ export const professionalServiceJsonLd = {
     name: site.founder,
   },
   sameAs: site.social.linkedinUrl ? [site.social.linkedinUrl] : [],
-  serviceType: [
-    "AI consulting",
-    "Workplace automation",
-    "AI agents and internal tools",
-    "Website redesign and development",
-    "Systems and workflow consulting",
-    "Custom AI solutions",
-  ],
+  serviceType: [...services.map((service) => service.title), "Website Modernisation"],
 };

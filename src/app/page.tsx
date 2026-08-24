@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { Card } from "@/components/card";
 import { Container } from "@/components/container";
@@ -14,7 +15,8 @@ import { RoiCalculator } from "@/components/roi-calculator";
 import { SectionHeading } from "@/components/section-heading";
 import { ServicePackageCard } from "@/components/service-package-card";
 import { ToolMarquee } from "@/components/tool-marquee";
-import { home, services, site } from "@/content/site";
+import { services } from "@/content/services";
+import { home, site } from "@/content/site";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -84,16 +86,11 @@ export default function HomePage() {
                   {home.hero.eyebrow}
                 </p>
               </Reveal>
-              <HeroHeading text={home.hero.heading} highlight="business works." />
+              <HeroHeading text={home.hero.heading} highlight="AI to work" />
               <Reveal variant="blur" delay={0.45}>
                 <p className="mt-7 max-w-[36rem] text-lg leading-8 text-mist-200 sm:text-xl sm:leading-9">{home.hero.body}</p>
               </Reveal>
-              <Reveal variant="up" delay={0.6}>
-                <div className="mt-7 inline-flex max-w-full rounded-full border border-accent-300/30 bg-accent-300/10 px-4 py-2 text-sm font-semibold text-accent-300 shadow-[0_0_45px_rgba(45,212,191,0.1)]">
-                  {home.hero.dashboardLine}
-                </div>
-              </Reveal>
-              <Reveal variant="up" delay={0.72}>
+              <Reveal variant="up" delay={0.62}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <ButtonLink href={site.bookingHref} className="min-h-12 px-6 text-base">
                     {site.bookingLabel}
@@ -103,7 +100,7 @@ export default function HomePage() {
                   </ButtonLink>
                 </div>
               </Reveal>
-              <Reveal variant="fade" delay={0.9}>
+              <Reveal variant="fade" delay={0.82}>
                 <p className="mt-8 max-w-[36rem] text-base leading-7 text-mist-300">{home.hero.trust}</p>
               </Reveal>
             </div>
@@ -154,10 +151,15 @@ export default function HomePage() {
       <section className="border-b border-slate-400/[0.16] bg-ink-950 py-20 sm:py-24">
         <Container>
           <Reveal>
-            <SectionHeading title={home.problems.heading} body={home.problems.body} className="max-w-[54rem]" />
+            <SectionHeading
+              eyebrow="REPRESENTATIVE USE CASES"
+              title={home.useCases.heading}
+              body={home.useCases.body}
+              className="max-w-[54rem]"
+            />
           </Reveal>
           <Reveal stagger className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {home.problems.cards.map((card) => (
+            {home.useCases.cards.map((card) => (
               <Card key={card.title} className="h-full p-6">
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-accent-300/25 bg-accent-300/10 text-accent-300">
                   <card.icon className="h-5 w-5" aria-hidden="true" />
@@ -170,7 +172,7 @@ export default function HomePage() {
           <Reveal delay={0.12}>
             <div className="mt-10">
               <ButtonLink href={site.bookingHref} variant="secondary" className="min-h-12 px-6 text-base">
-                {home.problems.cta}
+                {home.useCases.cta}
               </ButtonLink>
             </div>
           </Reveal>
@@ -182,21 +184,32 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="WHAT WE OFFER"
-              title="End-to-end AI services for your business."
-              body="We can support your organisation from the first AI decision through to implementation, adoption and ongoing improvement."
+              title="Seven AI services. One connected delivery partner."
+              body="Start with the capability that best matches your priority. We can connect advisory, technical delivery and workforce adoption as the work develops."
               className="max-w-[54rem]"
             />
           </Reveal>
           <Reveal stagger className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {services.map((service) => (
-              <Card key={service.title} className="flex min-h-52 h-full flex-col p-6">
-                <div className="flex items-center justify-between gap-4">
-                  <service.icon className="h-5 w-5 text-accent-300" aria-hidden="true" />
-                  <span className="font-mono text-sm font-semibold tracking-[0.16em] text-accent-300">{service.number}</span>
-                </div>
-                <h2 className="mt-7 text-lg font-semibold leading-6 text-mist-50">{service.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-mist-300">{service.description}</p>
-              </Card>
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group block h-full rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
+                aria-label={`Explore ${service.title}`}
+              >
+                <Card className="flex min-h-52 h-full flex-col p-6 transition group-hover:-translate-y-1 group-hover:border-accent-300/45">
+                  <div className="flex items-center justify-between gap-4">
+                    <service.icon className="h-5 w-5 text-accent-300" aria-hidden="true" />
+                    <span className="font-mono text-sm font-semibold tracking-[0.16em] text-accent-300">{service.number}</span>
+                  </div>
+                  <h2 className="mt-7 text-lg font-semibold leading-6 text-mist-50">{service.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-mist-300">{service.description}</p>
+                  <span className="mt-auto inline-flex items-center pt-5 text-sm font-semibold text-accent-300">
+                    Explore service
+                    <ArrowRight className="ml-2 h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                </Card>
+              </Link>
             ))}
           </Reveal>
           <Reveal delay={0.12}>
@@ -225,7 +238,7 @@ export default function HomePage() {
       <section className="border-b border-slate-400/[0.16] bg-ink-950 py-20 sm:py-28">
         <Container>
           <Reveal>
-            <SectionHeading title={home.roi.heading} body={home.roi.body} className="max-w-[54rem]" />
+            <SectionHeading eyebrow="AUTOMATION EXAMPLE" title={home.roi.heading} body={home.roi.body} className="max-w-[54rem]" />
           </Reveal>
           <Reveal delay={0.08}>
             <div className="mt-12">

@@ -6,10 +6,11 @@ type CtaPanelProps = {
   heading: string;
   body: string;
   buttonLabel?: string;
+  href?: string;
   className?: string;
 };
 
-export function CtaPanel({ heading, body, buttonLabel = site.bookingLabel, className }: CtaPanelProps) {
+export function CtaPanel({ heading, body, buttonLabel = site.bookingLabel, href = site.bookingHref, className }: CtaPanelProps) {
   return (
     <section
       className={cn(
@@ -26,7 +27,7 @@ export function CtaPanel({ heading, body, buttonLabel = site.bookingLabel, class
           <h2 className="text-3xl font-semibold leading-tight text-mist-50 sm:text-4xl">{heading}</h2>
           <p className="mt-4 text-[1.03rem] leading-8 text-mist-200">{body}</p>
         </div>
-        <ButtonLink href={site.bookingHref} className="min-h-12 shrink-0 px-6 text-base">
+        <ButtonLink href={href} className="min-h-12 shrink-0 px-6 text-base">
           {buttonLabel}
         </ButtonLink>
       </div>

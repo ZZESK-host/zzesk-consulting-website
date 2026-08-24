@@ -6,6 +6,7 @@ import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { PointerGlow } from "@/components/pointer-glow";
+import { services } from "@/content/services";
 import { professionalServiceJsonLd, site } from "@/content/site";
 
 const geistSans = Geist({
@@ -59,7 +60,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="min-h-screen bg-ink-950 font-sans antialiased">
         {/* Gates reveal-hiding styles so content stays visible without JavaScript. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
@@ -72,7 +73,7 @@ export default function RootLayout({
         {/* TODO: Add privacy-conscious analytics here after choosing the analytics and consent approach. */}
         <PointerGlow />
         <div className="flex min-h-screen flex-col">
-          <Header />
+          <Header serviceLinks={services.map(({ slug, shortTitle, number }) => ({ slug, shortTitle, number }))} />
           <main className="flex-1">{children}</main>
           <Footer />
         </div>

@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
-    "How ZZESK Consulting collects, uses, stores and protects personal information for enquiries, consulting, websites, automation and AI-assisted services.",
+    "How ZZESK Consulting collects, uses, stores and protects personal information for enquiries, AI consulting, implementation, managed services and website modernisation.",
   path: "/privacy",
 });
 
@@ -25,7 +25,7 @@ const sections: PrivacySection[] = [
     title: "1. Who this policy applies to",
     body: [
       `${site.businessName} is based in Victoria, Australia. This policy explains how we handle personal information when you visit ${site.domain}, submit an enquiry, discuss a project, use a ZZESK-built website or internal tool, or receive support from us.`,
-      "It is written for website visitors, prospective customers, customer team members and other people whose personal information may be handled while we provide consulting, website development, automation, software and practical AI services.",
+      "It is written for website visitors, prospective customers, customer team members and other people whose personal information may be handled while we provide AI advisory, implementation, integration, managed services, training and supporting website-modernisation services.",
       "Project-specific agreements, statements of work, data-processing terms or security schedules may also apply to customer projects. If those documents say something different for a particular project, the project-specific document applies to that project.",
     ],
   },
@@ -64,7 +64,7 @@ const sections: PrivacySection[] = [
     items: [
       "Respond to enquiries and decide whether ZZESK is a sensible fit for the requested work.",
       "Prepare proposals, quotes, statements of work, service agreements and project plans.",
-      "Consult on, design, build, configure, test, host, support and improve customer websites, internal tools, automations and AI-assisted workflows.",
+      "Advise on, design, build, configure, test, integrate, support and improve AI services, internal tools, automations, data workflows and supporting customer websites.",
       "Connect approved third-party systems, authenticate users, manage permissions and keep agent actions auditable.",
       "Monitor usage, performance, reliability, security, token costs and service limits.",
       "Send service, support, billing and administrative communications.",
@@ -159,7 +159,7 @@ export default function PrivacyPage() {
               as="h1"
               eyebrow="PRIVACY"
               title="Privacy Policy"
-              body="How ZZESK Consulting handles personal information for enquiries, consulting projects, websites, internal tools, automation and AI-assisted services."
+              body="How ZZESK Consulting handles personal information for enquiries, AI advisory, implementation, managed services, training and supporting website-modernisation work."
             />
           </Reveal>
         </Container>

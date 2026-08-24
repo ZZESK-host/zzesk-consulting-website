@@ -103,7 +103,7 @@ export function Header({ serviceLinks = [] }: HeaderProps) {
                     Services
                     <ChevronDown className="h-4 w-4 transition group-open/services:rotate-180" aria-hidden="true" />
                   </summary>
-                  <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[25rem] -translate-x-1/2 rounded-lg border border-slate-400/[0.18] bg-ink-900/98 p-3 shadow-[0_28px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+                  <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[25rem] -translate-x-1/2 rounded-lg border border-slate-400/[0.18] bg-ink-900 p-3 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
                     <Link
                       href="/services"
                       className="flex items-center justify-between rounded-lg border border-accent-300/18 bg-accent-300/[0.06] px-4 py-3 text-sm font-semibold text-mist-50 transition hover:border-accent-300/40 hover:bg-accent-300/[0.09] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-300"
